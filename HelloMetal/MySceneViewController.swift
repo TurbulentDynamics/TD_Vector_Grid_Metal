@@ -1,57 +1,73 @@
-//
-//  MySceneViewController.swift
-//  HelloMetal
-//
-//  Created by Andrew K. on 11/5/14.
-//  Copyright (c) 2014 Razeware LLC. All rights reserved.
-//
+/**
+ * Copyright (c) 2016 Razeware LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 import UIKit
+import simd
 
 class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     
-    var worldModelMatrix:Matrix4!
+    var worldModelMatrix:float4x4!
     var objectToDraw: Cube!
     
     let panSensivity:Float = 5.0
     var lastPanLocation: CGPoint!
     var lastScale: CGFloat!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        worldModelMatrix = Matrix4()
+        worldModelMatrix = float4x4()
         worldModelMatrix.translate(0.0, y: 0.0, z: -4)
-        worldModelMatrix.rotateAroundX(Matrix4.degrees(toRad: 25), y: 0.0, z: 0.0)
+        worldModelMatrix.rotateAroundX(float4x4.degrees(toRad: 25), y: 0.0, z: 0.0)
         
-        objectToDraw = Cube(device: device, commandQ:commandQueue)
+        objectToDraw = Cube(device: device, commandQ: commandQueue, textureLoader: textureLoader)
         self.metalViewControllerDelegate = self
         
         setupGestures()
     }
     
     //MARK: - MetalViewControllerDelegate
-    func renderObjects(drawable:CAMetalDrawable) {
+    func renderObjects(_ drawable:CAMetalDrawable) {
         
-        objectToDraw.render(commandQueue: commandQueue, pipelineState: pipelineState, drawable: drawable, parentModelViewMatrix: worldModelMatrix, projectionMatrix: projectionMatrix, clearColor: nil)
+        objectToDraw.render(commandQueue, pipelineState: pipelineState, drawable: drawable, parentModelViewMatrix: worldModelMatrix, projectionMatrix: projectionMatrix, clearColor: nil)
     }
     
-    func updateLogic(timeSinceLastUpdate: CFTimeInterval) {
-        objectToDraw.updateWithDelta(delta: timeSinceLastUpdate)
+    func updateLogic(_ timeSinceLastUpdate: CFTimeInterval) {
+        objectToDraw.updateWithDelta(timeSinceLastUpdate)
     }
     
     //MARK: - Gesture related
     // 1
-    func setupGestures(){
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(pan(panGesture:)))
+    func setupGestures() {
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(MySceneViewController.pan(_:)))
         self.view.addGestureRecognizer(pan)
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinch(pinchGesture:)))
         self.view.addGestureRecognizer(pinch)
     }
     
     // 2
-    func pan(panGesture: UIPanGestureRecognizer){
-        if panGesture.state == UIGestureRecognizerState.changed{
+    func pan(_ panGesture: UIPanGestureRecognizer) {
+        if panGesture.state == UIGestureRecognizerState.changed {
             let pointInView = panGesture.location(in: self.view)
             // 3
             let xDelta = Float((lastPanLocation.x - pointInView.x)/self.view.bounds.width) * panSensivity
@@ -60,7 +76,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
             objectToDraw.rotationY -= xDelta
             objectToDraw.rotationX -= yDelta
             lastPanLocation = pointInView
-        } else if panGesture.state == UIGestureRecognizerState.began{
+        } else if panGesture.state == UIGestureRecognizerState.began {
             lastPanLocation = panGesture.location(in: self.view)
         }
     }
@@ -71,7 +87,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
             lastScale = pinchGesture.scale
         } else if pinchGesture.state == UIGestureRecognizerState.began{
             lastScale = pinchGesture.scale
-        } 
+        }
     }
     
 }

@@ -1,12 +1,27 @@
-//
-//  MetalTexture.swift
-//  MetalKernelsPG
-//
-//  Created by Andrew K. on 10/20/14.
-//  Copyright (c) 2014 Andrew K. All rights reserved.
-//
+/**
+ * Copyright (c) 2016 Razeware LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 import UIKit
+import MetalKit
 
 class MetalTexture: NSObject {
 
@@ -23,7 +38,7 @@ class MetalTexture: NSObject {
   let bitsPerComponent:Int! = 8
   
   //MARK: - Creation
-  init(resourceName: String,ext: String, mipmaped:Bool){
+  init(resourceName: String,ext: String, mipmaped:Bool) {
     
     path = Bundle.main.path(forResource: resourceName, ofType: ext)
     width    = 0
@@ -37,37 +52,37 @@ class MetalTexture: NSObject {
     super.init()
   }
   
-  func loadTexture(device: MTLDevice, commandQ: MTLCommandQueue, flip: Bool){
+  func loadTexture(_ device: MTLDevice, commandQ: MTLCommandQueue, flip: Bool) {
     
-    let image = UIImage(contentsOfFile: path)?.cgImage
+    let image = UIImage(contentsOfFile: path)!.cgImage!
     let colorSpace = CGColorSpaceCreateDeviceRGB()
     
-    width = image!.width
-    height = image!.height
+    width = image.width
+    height = image.height
     
     let rowBytes = width * bytesPerPixel
     
-    let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: rowBytes, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+    let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: rowBytes, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
     let bounds = CGRect(x: 0, y: 0, width: Int(width), height: Int(height))
-    context!.clear(bounds)
+    context.clear(bounds)
     
-    if flip == false{
-      context!.translateBy(x: 0, y: CGFloat(self.height))
-      context!.scaleBy(x: 1.0, y: -1.0)
+    if flip == false {
+      context.translateBy(x: 0, y: CGFloat(self.height))
+      context.scaleBy(x: 1.0, y: -1.0)
     }
     
-    context?.draw(image!, in: bounds)
+    context.draw(image, in: bounds)
     
     let texDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: MTLPixelFormat.rgba8Unorm, width: Int(width), height: Int(height), mipmapped: isMipmaped)
     target = texDescriptor.textureType
     texture = device.makeTexture(descriptor: texDescriptor)
     
-    let pixelsData = context!.data
+    let pixelsData = context.data
     let region = MTLRegionMake2D(0, 0, Int(width), Int(height))
     texture.replace(region: region, mipmapLevel: 0, withBytes: pixelsData!, bytesPerRow: Int(rowBytes))
     
-    if (isMipmaped == true){
-      generateMipMapLayersUsingSystemFunc(texture: texture, device: device, commandQ: commandQ, block: { (buffer) -> Void in
+    if (isMipmaped == true) {
+      generateMipMapLayersUsingSystemFunc(texture, device: device, commandQ: commandQ, block: { (buffer) -> Void in
         print("mips generated")
       })
     }
@@ -77,7 +92,7 @@ class MetalTexture: NSObject {
   
   
   
-  class func textureCopy(source:MTLTexture,device: MTLDevice, mipmaped: Bool) -> MTLTexture {
+  class func textureCopy(_ source:MTLTexture,device: MTLDevice, mipmaped: Bool) -> MTLTexture {
     let texDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: MTLPixelFormat.bgra8Unorm, width: Int(source.width), height: Int(source.height), mipmapped: mipmaped)
     let copyTexture = device.makeTexture(descriptor: texDescriptor)
     
@@ -89,7 +104,7 @@ class MetalTexture: NSObject {
     return copyTexture
   }
   
-  class func copyMipLayer(source:MTLTexture, destination:MTLTexture, mipLvl: Int){
+  class func copyMipLayer(_ source:MTLTexture, destination:MTLTexture, mipLvl: Int){
     let q = Int(powf(2, Float(mipLvl)))
     let mipmapedWidth = max(Int(source.width)/q,1)
     let mipmapedHeight = max(Int(source.height)/q,1)
@@ -102,9 +117,9 @@ class MetalTexture: NSObject {
   }
   
   //MARK: - Generating UIImage from texture mip layers
-  func image(mipLevel: Int) -> UIImage{
+  func image(_ mipLevel: Int) -> UIImage {
     
-    let p = bytesForMipLevel(mipLevel: mipLevel)
+    let p = bytesForMipLevel(mipLevel)
     let q = Int(powf(2, Float(mipLevel)))
     let mipmapedWidth = max(width / q,1)
     let mipmapedHeight = max(height / q,1)
@@ -112,18 +127,18 @@ class MetalTexture: NSObject {
     
     let colorSpace = CGColorSpaceCreateDeviceRGB()
     
-    let context = CGContext(data: p, width: mipmapedWidth, height: mipmapedHeight, bitsPerComponent: 8, bytesPerRow: rowBytes, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
-    let imgRef = context!.makeImage()
+    let context = CGContext(data: p, width: mipmapedWidth, height: mipmapedHeight, bitsPerComponent: 8, bytesPerRow: rowBytes, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+    let imgRef = context.makeImage()
     let image = UIImage(cgImage: imgRef!)
     return image
   }
   
   func image() -> UIImage{
-    return image(mipLevel: 0)
+    return image(0)
   }
   
   //MARK: - Getting raw bytes from texture mip layers
-  func bytesForMipLevel(mipLevel: Int) -> UnsafeMutableRawPointer{
+  func bytesForMipLevel(_ mipLevel: Int) -> UnsafeMutableRawPointer {
     let q = Int(powf(2, Float(mipLevel)))
     let mipmapedWidth = max(Int(width) / q,1)
     let mipmapedHeight = max(Int(height) / q,1)
@@ -136,11 +151,11 @@ class MetalTexture: NSObject {
     return pointer!
   }
   
-  func bytes() -> UnsafeMutableRawPointer{
-    return bytesForMipLevel(mipLevel: 0)
+  func bytes() -> UnsafeMutableRawPointer {
+    return bytesForMipLevel(0)
   }
   
-  func generateMipMapLayersUsingSystemFunc(texture: MTLTexture, device: MTLDevice, commandQ: MTLCommandQueue,block: @escaping MTLCommandBufferHandler){
+  func generateMipMapLayersUsingSystemFunc(_ texture: MTLTexture, device: MTLDevice, commandQ: MTLCommandQueue,block: @escaping MTLCommandBufferHandler) {
     
     let commandBuffer = commandQ.makeCommandBuffer()
     
