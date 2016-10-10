@@ -22,6 +22,8 @@
 		4359566D19FA527D00881C62 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4359566C19FA527D00881C62 /* Cube.swift */; };
 		436D0D091B77E29400483748 /* MetalTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D0D081B77E29400483748 /* MetalTexture.swift */; };
 		43D3FAEB1CB123C800FA7E2F /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D3FAEA1CB123C800FA7E2F /* Light.swift */; };
+		786EF0271DAC3A9E006183B2 /* inputVectors.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 786EF0261DAC3A9E006183B2 /* inputVectors.vvt */; };
+		786EF0291DAC3DCF006183B2 /* Vectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786EF0281DAC3DCF006183B2 /* Vectors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		4359566C19FA527D00881C62 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		436D0D081B77E29400483748 /* MetalTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalTexture.swift; sourceTree = "<group>"; };
 		43D3FAEA1CB123C800FA7E2F /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		786EF0261DAC3A9E006183B2 /* inputVectors.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inputVectors.vvt; sourceTree = "<group>"; };
+		786EF0281DAC3DCF006183B2 /* Vectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vectors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 				43D3FAEA1CB123C800FA7E2F /* Light.swift */,
 				43167D7D19F93B2B00929F8C /* Node.swift */,
 				4359566C19FA527D00881C62 /* Cube.swift */,
+				786EF0281DAC3DCF006183B2 /* Vectors.swift */,
 				35023C4519DDB96F006F3266 /* AppDelegate.swift */,
 				0C49914A1A7278730028ECBB /* MetalViewController.swift */,
 				0C49914B1A7278730028ECBB /* MySceneViewController.swift */,
@@ -88,6 +93,7 @@
 				0C9DA0B21AD7D2CC00126EC2 /* cube.png */,
 				35023C4C19DDB970006F3266 /* Images.xcassets */,
 				35023C4E19DDB970006F3266 /* LaunchScreen.xib */,
+				786EF0261DAC3A9E006183B2 /* inputVectors.vvt */,
 				35023C4319DDB96F006F3266 /* Supporting Files */,
 				35023C6519DDBB29006F3266 /* Shaders.metal */,
 			);
@@ -162,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786EF0271DAC3A9E006183B2 /* inputVectors.vvt in Resources */,
 				35023C4B19DDB970006F3266 /* Main.storyboard in Resources */,
 				35023C5019DDB970006F3266 /* LaunchScreen.xib in Resources */,
 				0C9DA0B31AD7D2CC00126EC2 /* cube.png in Resources */,
@@ -186,6 +193,7 @@
 				0C49914D1A7278730028ECBB /* MySceneViewController.swift in Sources */,
 				43167D7C19F93AA100929F8C /* Vertex.swift in Sources */,
 				0C49914C1A7278730028ECBB /* MetalViewController.swift in Sources */,
+				786EF0291DAC3DCF006183B2 /* Vectors.swift in Sources */,
 				35023C4619DDB96F006F3266 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,9 +309,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 42XF78PWA9;
 				INFOPLIST_FILE = HelloMetal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.altima.HelloMetal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -318,9 +325,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 42XF78PWA9;
 				INFOPLIST_FILE = HelloMetal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.altima.HelloMetal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

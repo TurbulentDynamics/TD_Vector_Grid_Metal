@@ -84,7 +84,7 @@ vertex VertexOut basic_vertex(
 }
 
 // 3
-fragment float4 basic_fragment(VertexOut interpolated [[stage_in]],
+fragment half4 basic_fragment(VertexOut interpolated [[stage_in]],
                                const device Uniforms&  uniforms    [[ buffer(1) ]],
                                texture2d<float>  tex2D     [[ texture(0) ]],
                                sampler           sampler2D [[ sampler(0) ]]) {
@@ -105,5 +105,6 @@ fragment float4 basic_fragment(VertexOut interpolated [[stage_in]],
   
   // 5
   float4 color = tex2D.sample(sampler2D, interpolated.texCoord);
-  return color * (ambientColor + diffuseColor + specularColor);
+  //return color * (ambientColor + diffuseColor + specularColor);
+  return half4(1.0);
 }

@@ -26,7 +26,8 @@ import simd
 class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     
     var worldModelMatrix:float4x4!
-    var objectToDraw: Cube!
+    var objectToDraw: Vectors!
+    //var objectToDraw: Cube!
     
     let panSensivity:Float = 5.0
     var lastPanLocation: CGPoint!
@@ -39,8 +40,9 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
         worldModelMatrix = float4x4()
         worldModelMatrix.translate(0.0, y: 0.0, z: -4)
         worldModelMatrix.rotateAroundX(float4x4.degrees(toRad: 25), y: 0.0, z: 0.0)
-        
-        objectToDraw = Cube(device: device, commandQ: commandQueue, textureLoader: textureLoader)
+
+        //objectToDraw = Cube(device: device, commandQ: commandQueue, textureLoader: textureLoader)
+        objectToDraw = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader)
         self.metalViewControllerDelegate = self
         
         setupGestures()
@@ -83,8 +85,9 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     
     func pinch(pinchGesture: UIPinchGestureRecognizer){
         if pinchGesture.state == UIGestureRecognizerState.changed{
-            objectToDraw.scale -= Float(lastScale - pinchGesture.scale)
+            objectToDraw.scale -= Float(lastScale - pinchGesture.scale) * objectToDraw.scale
             lastScale = pinchGesture.scale
+            print(objectToDraw.scale)
         } else if pinchGesture.state == UIGestureRecognizerState.began{
             lastScale = pinchGesture.scale
         }
