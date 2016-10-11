@@ -87,7 +87,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
         if pinchGesture.state == UIGestureRecognizerState.changed{
             objectToDraw.scale -= Float(lastScale - pinchGesture.scale) * objectToDraw.scale
             lastScale = pinchGesture.scale
-            print(objectToDraw.scale)
+            //print(objectToDraw.scale)
         } else if pinchGesture.state == UIGestureRecognizerState.began{
             lastScale = pinchGesture.scale
         }
