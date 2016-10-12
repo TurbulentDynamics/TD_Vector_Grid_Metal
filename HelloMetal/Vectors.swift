@@ -27,7 +27,15 @@ class Vectors: Node {
     
     init(device: MTLDevice, commandQ: MTLCommandQueue, textureLoader :MTKTextureLoader) {
         
-        let filepath = Bundle.main.path(forResource: "inputVectors", ofType: "vvt")!
+        
+        let filename = "flowyz_nx_01536_0012000_vect"
+        //let filename = "inputVectors"
+        
+        let filepath = Bundle.main.path(forResource: filename, ofType: "vvt")!
+        
+        let nx = 1536
+        
+        
         let contents = try! String(contentsOfFile: filepath)
         let arrayOfLines = contents.components(separatedBy: "\n")
         
@@ -40,10 +48,12 @@ class Vectors: Node {
             //print(Float(points[2]))
             //print(Float(points[3]))
             if points.count == 4, let _ = Float(points[0]), let p1 = Float(points[1]), let p2 = Float(points[2]), let p3 = Float(points[3]) {
+
                 let k = Float(0.005)
                 
-                let startY = k*Float(Int(j/64) - 32 )
-                let startZ = k*Float(Int(j%64) - 32 )
+                let startY = k*Float(Int(j/nx) - nx/2 )
+                let startZ = k*Float(Int(j%nx) - nx/2 )
+
                 // add starting point
                 verticesArray.append(Vertex(x: 0, y: startY, z: startZ, r: 0, g: 0, b: 0, a: 0, s: 0, t: 0, nX: 0, nY: 0, nZ: 0))
                 
