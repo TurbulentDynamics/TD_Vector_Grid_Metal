@@ -41,13 +41,18 @@ class Vectors: Node {
             //print(Float(points[3]))
             if points.count == 4, let p0 = Float(points[0]), let p1 = Float(points[1]), let p2 = Float(points[2]), let p3 = Float(points[3]) {
                 let k = Float(0.005)
+                
+                
                 verticesArray.append(Vertex(x: 0, y: k*Float(Int(j/64)), z: k*Float(Int(j%64)), r: 0, g: 0, b: 0, a: 0, s: 0, t: 0, nX: 0, nY: 0, nZ: 0))
-
+                
                 print("\ny: ")
                 print(Float(Int(j/64)))
                 print("z: ")
                 print(Float(Int(j%64)), j)
-                verticesArray.append(Vertex(x: p0*p1, y: p0*p2, z: p0*p3, r: 0, g: 0, b: 0, a: 0, s: 0, t: 0, nX: 0, nY: 0, nZ: 0))
+                
+                let multiplier = Float(0.05)
+                
+                verticesArray.append(Vertex(x: multiplier*p1, y: k*Float(Int(j/64))+multiplier*p2, z: k*Float(Int(j%64))+multiplier*p3, r: 0, g: 0, b: 0, a: 0, s: 0, t: 0, nX: 0, nY: 0, nZ: 0))
                 j+=1
             }
         }
