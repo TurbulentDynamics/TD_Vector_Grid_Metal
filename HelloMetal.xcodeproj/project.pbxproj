@@ -11,6 +11,7 @@
 		0C49914D1A7278730028ECBB /* MySceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49914B1A7278730028ECBB /* MySceneViewController.swift */; };
 		0C9DA0AD1AD7CD6200126EC2 /* BufferProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9DA0AC1AD7CD6200126EC2 /* BufferProvider.swift */; };
 		0C9DA0B31AD7D2CC00126EC2 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9DA0B21AD7D2CC00126EC2 /* cube.png */; };
+		25BFFE681DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 25BFFE671DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt */; };
 		35023C4619DDB96F006F3266 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35023C4519DDB96F006F3266 /* AppDelegate.swift */; };
 		35023C4B19DDB970006F3266 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35023C4919DDB970006F3266 /* Main.storyboard */; };
 		35023C4D19DDB970006F3266 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35023C4C19DDB970006F3266 /* Images.xcassets */; };
@@ -31,6 +32,7 @@
 		0C49914B1A7278730028ECBB /* MySceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySceneViewController.swift; sourceTree = "<group>"; };
 		0C9DA0AC1AD7CD6200126EC2 /* BufferProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferProvider.swift; sourceTree = "<group>"; };
 		0C9DA0B21AD7D2CC00126EC2 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube.png; sourceTree = "<group>"; };
+		25BFFE671DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flowyz_nx_00600_0004000_vect.vvt; path = HelloMetal/flowyz_nx_00600_0004000_vect.vvt; sourceTree = "<group>"; };
 		35023C4019DDB96F006F3266 /* HelloMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35023C4419DDB96F006F3266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35023C4519DDB96F006F3266 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 		35023C3719DDB96F006F3266 = {
 			isa = PBXGroup;
 			children = (
+				25BFFE671DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt */,
 				35023C4219DDB96F006F3266 /* HelloMetal */,
 				35023C4119DDB96F006F3266 /* Products */,
 			);
@@ -168,6 +171,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25BFFE681DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt in Resources */,
 				786EF0271DAC3A9E006183B2 /* inputVectors.vvt in Resources */,
 				35023C4B19DDB970006F3266 /* Main.storyboard in Resources */,
 				35023C5019DDB970006F3266 /* LaunchScreen.xib in Resources */,
