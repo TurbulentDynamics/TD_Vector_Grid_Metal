@@ -21,6 +21,7 @@
 		436D0D091B77E29400483748 /* MetalTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D0D081B77E29400483748 /* MetalTexture.swift */; };
 		786EF0271DAC3A9E006183B2 /* inputVectors.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 786EF0261DAC3A9E006183B2 /* inputVectors.vvt */; };
 		786EF0291DAC3DCF006183B2 /* Vectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786EF0281DAC3DCF006183B2 /* Vectors.swift */; };
+		78A6FD2E1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */; };
 		78C457CC1DB56A940018F588 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C457CB1DB56A940018F588 /* Light.swift */; };
 		78C457CE1DB56BE00018F588 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C457CD1DB56BE00018F588 /* cube.png */; };
 		78C457D11DB57FF80018F588 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C457D01DB57FF80018F588 /* MetalViewController.swift */; };
@@ -53,6 +54,7 @@
 		436D0D081B77E29400483748 /* MetalTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalTexture.swift; sourceTree = "<group>"; };
 		786EF0261DAC3A9E006183B2 /* inputVectors.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inputVectors.vvt; sourceTree = "<group>"; };
 		786EF0281DAC3DCF006183B2 /* Vectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vectors.swift; sourceTree = "<group>"; };
+		78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flowyz_nx_00600_0004000_vect.vvt; sourceTree = "<group>"; };
 		78C457CB1DB56A940018F588 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		78C457CD1DB56BE00018F588 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube.png; sourceTree = "<group>"; };
 		78C457D01DB57FF80018F588 /* MetalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +87,6 @@
 		35023C3719DDB96F006F3266 = {
 			isa = PBXGroup;
 			children = (
-				25BFFE671DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt */,
 				35023C4219DDB96F006F3266 /* HelloMetal */,
 				78DC0C7E1DB130920037067D /* HelloMetalMac */,
 				35023C4119DDB96F006F3266 /* Products */,
@@ -117,6 +118,7 @@
 				35023C4919DDB970006F3266 /* Main.storyboard */,
 				35023C4C19DDB970006F3266 /* Images.xcassets */,
 				35023C4E19DDB970006F3266 /* LaunchScreen.xib */,
+				78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */,
 				786EF0261DAC3A9E006183B2 /* inputVectors.vvt */,
 				78C457CD1DB56BE00018F588 /* cube.png */,
 				35023C4319DDB96F006F3266 /* Supporting Files */,
@@ -228,7 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25BFFE681DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt in Resources */,
+				78A6FD2E1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt in Resources */,
 				786EF0271DAC3A9E006183B2 /* inputVectors.vvt in Resources */,
 				78C457CE1DB56BE00018F588 /* cube.png in Resources */,
 				35023C4B19DDB970006F3266 /* Main.storyboard in Resources */,

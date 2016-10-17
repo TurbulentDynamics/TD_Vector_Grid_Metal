@@ -26,12 +26,12 @@ class Vectors: Node {
     
     init(device: MTLDevice, commandQ: MTLCommandQueue, textureLoader :MTKTextureLoader, multiplier: Float) {
 
-        //let filename = "flowyz_nx_01536_0012000_vect"
-        let filename = "inputVectors"
+        let filename = "flowyz_nx_00600_0004000_vect"
+        //let filename = "inputVectors"
         
         let filepath = Bundle.main.path(forResource: filename, ofType: "vvt")!
         
-        let nx = 64//1536
+        let nx = 600
         
         let contents = try! String(contentsOfFile: filepath)
         let arrayOfLines = contents.components(separatedBy: "\n")
