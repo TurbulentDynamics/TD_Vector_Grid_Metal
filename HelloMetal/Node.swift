@@ -87,7 +87,7 @@ class Node {
     
     renderEncoder.setRenderPipelineState(pipelineState)
     renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
-    renderEncoder.setFragmentTexture(texture, at: 0)
+    //renderEncoder.setFragmentTexture(texture, at: 0)
     if let samplerState = samplerState {
       renderEncoder.setFragmentSamplerState(samplerState, at: 0)
     }
@@ -99,10 +99,7 @@ class Node {
     
     renderEncoder.setVertexBuffer(uniformBuffer, offset: 0, at: 1)
     renderEncoder.setFragmentBuffer(uniformBuffer, offset: 0, at: 1)
-    //renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
-    //renderEncoder.drawPrimitives(type: .lineStrip, vertexStart: 0, vertexCount: vertexCount)
     renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: vertexCount)
-    //renderEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: vertexCount)
     renderEncoder.endEncoding()
     
     commandBuffer.present(drawable)

@@ -20,21 +20,18 @@
  * THE SOFTWARE.
  */
 
-import UIKit
 import MetalKit
 
 class Vectors: Node {
     
-    init(device: MTLDevice, commandQ: MTLCommandQueue, textureLoader :MTKTextureLoader) {
-        
-        
-        let filename = "flowyz_nx_01536_0012000_vect"
-        //let filename = "inputVectors"
+    init(device: MTLDevice, commandQ: MTLCommandQueue, textureLoader :MTKTextureLoader, multiplier: Float) {
+
+        //let filename = "flowyz_nx_01536_0012000_vect"
+        let filename = "inputVectors"
         
         let filepath = Bundle.main.path(forResource: filename, ofType: "vvt")!
         
-        let nx = 1536
-        
+        let nx = 64//1536
         
         let contents = try! String(contentsOfFile: filepath)
         let arrayOfLines = contents.components(separatedBy: "\n")
@@ -57,14 +54,12 @@ class Vectors: Node {
                 // add starting point
                 verticesArray.append(Vertex(x: 0, y: startY, z: startZ, r: 0, g: 0, b: 0, a: 0, s: 0, t: 0, nX: 0, nY: 0, nZ: 0))
                 
-                let multiplier = Float(0.05)
                 // add endpoint
                 verticesArray.append(Vertex(x: multiplier*p1, y: startY+multiplier*p2, z: startZ+multiplier*p3, r: 0, g: 0, b: 0, a: 0, s: 0, t: 0, nX: 0, nY: 0, nZ: 0))
                 j+=1
             }
         }
         //print(verticesArray)
-        //print(verticesArray.count)
         
         //3
         let path = Bundle.main.path(forResource: "cube", ofType: "png")!

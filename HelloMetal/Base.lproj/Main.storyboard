@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,13 +14,75 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="MTKView">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clG-lQ-OEI" customClass="MTKView">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyR-YM-pl4">
+                                <view key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="GcP-JZ-yjD">
+                                    <frame key="frameInset"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-KN-oUm">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="uIH-Zd-rbV"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="+"/>
+                                            <connections>
+                                                <action selector="changeMultiplier:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KsO-yl-YXR"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IpH-OK-sfI">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="0TX-KD-WDw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="-"/>
+                                            <connections>
+                                                <action selector="changeMultiplier:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1CQ-s0-bo9"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IpH-OK-sfI" firstAttribute="centerX" secondItem="GcP-JZ-yjD" secondAttribute="trailing" multiplier="0.25" id="7zi-JB-ufu"/>
+                                        <constraint firstItem="9xh-KN-oUm" firstAttribute="centerX" secondItem="GcP-JZ-yjD" secondAttribute="trailing" multiplier="0.75" id="AcU-i0-AMG"/>
+                                        <constraint firstItem="9xh-KN-oUm" firstAttribute="centerY" secondItem="IpH-OK-sfI" secondAttribute="centerY" id="IK8-cc-V7E"/>
+                                        <constraint firstItem="IpH-OK-sfI" firstAttribute="centerY" secondItem="GcP-JZ-yjD" secondAttribute="centerY" constant="-5" id="OUn-0v-UQW"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="WWF-Ts-BnT"/>
+                                </constraints>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAX-Vs-LKV">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="iyR-YM-pl4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0xY-gg-kOn"/>
+                            <constraint firstItem="clG-lQ-OEI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="66e-pl-5YH"/>
+                            <constraint firstItem="clG-lQ-OEI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OYa-fL-4N7"/>
+                            <constraint firstItem="iyR-YM-pl4" firstAttribute="top" secondItem="clG-lQ-OEI" secondAttribute="bottom" id="R5B-2Q-WTz"/>
+                            <constraint firstAttribute="trailing" secondItem="clG-lQ-OEI" secondAttribute="trailing" id="blf-GY-U1X"/>
+                            <constraint firstItem="ZAX-Vs-LKV" firstAttribute="centerY" secondItem="iyR-YM-pl4" secondAttribute="centerY" id="i6k-pA-sIz"/>
+                            <constraint firstAttribute="trailing" secondItem="iyR-YM-pl4" secondAttribute="trailing" id="iDl-ya-3Bg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iyR-YM-pl4" secondAttribute="bottom" id="lsZ-10-aqu"/>
+                            <constraint firstItem="ZAX-Vs-LKV" firstAttribute="centerX" secondItem="iyR-YM-pl4" secondAttribute="centerX" id="zEg-Gu-xPo"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="mtkView" destination="8bC-Xf-vdC" id="f3h-GQ-DGy"/>
+                        <outlet property="mtkView" destination="clG-lQ-OEI" id="3Tt-Tt-HFY"/>
+                        <outlet property="multiplierLabel" destination="ZAX-Vs-LKV" id="M4X-lL-Ekh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -1,26 +1,12 @@
-/**
- * Copyright (c) 2016 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+//
+//  ViewController.swift
+//  HelloMetalMac
+//
+//  Created by Igor Poltavtsev on 14.10.16.
+//  Copyright © 2016 Razeware LLC. All rights reserved.
+//
 
-import UIKit
+import Cocoa
 import simd
 
 class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
@@ -35,27 +21,41 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     
     var multiplier: Float! {
         didSet {
-            multiplierLabel.text = String(format: "multiplier = %.2f", multiplier)
+            multiplierLabel.stringValue = String(format: "multiplier = %.2f", multiplier)
         }
     }
     
-    @IBOutlet weak var multiplierLabel: UILabel!
+    @IBOutlet weak var multiplierLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        multiplier = 0.05
         
         worldModelMatrix = float4x4()
         worldModelMatrix.translate(0.0, y: 0.0, z: -1)
         worldModelMatrix.rotateAroundX(0, y: float4x4.degrees(toRad: 90), z: 0.0)
         
-        multiplier = 0.05
+
         vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
         vectorsObject.scale = 4
         self.metalViewControllerDelegate = self
-        
-        setupGestures()
+
+        //setupGestures()
     }
     
+    override func scrollWheel(with event: NSEvent) {
+        print(event)
+    }
+
+    override func mouseDragged(with event: NSEvent) {
+        print(event)
+    }
+    override func rightMouseDragged(with event: NSEvent) {
+        print(event)
+    }
+
+
     //MARK: - MetalViewControllerDelegate
     func renderObjects(_ drawable:CAMetalDrawable) {
         
@@ -65,7 +65,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     func updateLogic(_ timeSinceLastUpdate: CFTimeInterval) {
         vectorsObject.updateWithDelta(timeSinceLastUpdate)
     }
-    
+    /*
     //MARK: - Gesture related
     // 1
     func setupGestures() {
@@ -132,7 +132,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     @IBAction func changeMultiplier(_ sender: UIButton) {
         multiplier = multiplier + (sender.tag == 1 ? -0.01 : 0.01)
         multiplier = multiplier <= 0 ? 0 : multiplier
-
+        
         let old = vectorsObject!
         vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
         vectorsObject.scale = old.scale
@@ -143,4 +143,5 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
         vectorsObject.positionY = old.positionY
         vectorsObject.positionZ = old.positionZ
     }
+*/
 }

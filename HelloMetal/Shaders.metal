@@ -63,8 +63,7 @@ struct Uniforms{
     Light light;
 };
 
-vertex VertexOut basic_vertex(
-                              const device VertexIn* vertex_array [[ buffer(0) ]],
+vertex VertexOut basic_vertex(const device VertexIn* vertex_array [[ buffer(0) ]],
                               const device Uniforms&  uniforms    [[ buffer(1) ]],
                               unsigned int vid [[ vertex_id ]]) {
     
@@ -81,8 +80,6 @@ vertex VertexOut basic_vertex(
     VertexOut.texCoord = VertexIn.texCoord;
     VertexOut.normal = (mv_Matrix * float4(VertexIn.normal, 0.0)).xyz;
     
-    VertexOut.pointsize = 10.0;
-
     return VertexOut;
 }
 
@@ -91,9 +88,9 @@ fragment half4 basic_fragment(VertexOut interpolated [[stage_in]],
                               const device Uniforms&  uniforms    [[ buffer(1) ]],
                               texture2d<float>  tex2D     [[ texture(0) ]],
                               sampler           sampler2D [[ sampler(0) ]],
-                                float2 pointCoord [[point_coord]])
-{
+                              float2 pointCoord [[point_coord]]) {
     
+    /*
     // Ambient
     Light light = uniforms.light;
     float4 ambientColor = float4(light.color * light.ambientIntensity, 1);
@@ -111,5 +108,6 @@ fragment half4 basic_fragment(VertexOut interpolated [[stage_in]],
     // 5
     float4 color = tex2D.sample(sampler2D, interpolated.texCoord);
     //return color * (ambientColor + diffuseColor + specularColor);
+    */
     return half4(1.0);
 }
