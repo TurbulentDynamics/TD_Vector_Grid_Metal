@@ -85,6 +85,7 @@
 		35023C3719DDB96F006F3266 = {
 			isa = PBXGroup;
 			children = (
+				25BFFE671DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt */,
 				35023C4219DDB96F006F3266 /* HelloMetal */,
 				78DC0C7E1DB130920037067D /* HelloMetalMac */,
 				35023C4119DDB96F006F3266 /* Products */,
@@ -227,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25BFFE681DB377CE003EF93C /* flowyz_nx_00600_0004000_vect.vvt in Resources */,
 				786EF0271DAC3A9E006183B2 /* inputVectors.vvt in Resources */,
 				78C457CE1DB56BE00018F588 /* cube.png in Resources */,
 				35023C4B19DDB970006F3266 /* Main.storyboard in Resources */,
