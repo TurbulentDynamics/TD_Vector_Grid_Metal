@@ -29,6 +29,7 @@
 		78A6FD2E1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */; };
 		78B8066D1DB970860036485D /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8066C1DB970860036485D /* Metal.framework */; };
 		78B8066F1DB9708D0036485D /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8066E1DB9708D0036485D /* MetalKit.framework */; };
+		78B806701DB972450036485D /* Shaders.metal in Resources */ = {isa = PBXBuildFile; fileRef = 35023C6519DDBB29006F3266 /* Shaders.metal */; };
 		78C457CC1DB56A940018F588 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C457CB1DB56A940018F588 /* Light.swift */; };
 		78C457CE1DB56BE00018F588 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C457CD1DB56BE00018F588 /* cube.png */; };
 		78C457D11DB57FF80018F588 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C457D01DB57FF80018F588 /* MetalViewController.swift */; };
@@ -266,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B806701DB972450036485D /* Shaders.metal in Resources */,
 				78DC0C841DB130920037067D /* Assets.xcassets in Resources */,
 				78DC0C871DB130930037067D /* Main.storyboard in Resources */,
 				780A7EFC1DB96E8000DCDD26 /* inputVectors.vvt in Resources */,

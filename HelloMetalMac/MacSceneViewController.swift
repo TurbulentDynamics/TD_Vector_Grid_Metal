@@ -36,9 +36,10 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         worldModelMatrix.translate(0.0, y: 0.0, z: -1)
         worldModelMatrix.rotateAroundX(0, y: float4x4.degrees(toRad: 90), z: 0.0)
         
-
+        IncomingData.shared.readDataFromFile()
+        
         vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
-        vectorsObject.scale = 4
+        vectorsObject.scale = 1
         self.metalViewControllerDelegate = self
 
         //setupGestures()
