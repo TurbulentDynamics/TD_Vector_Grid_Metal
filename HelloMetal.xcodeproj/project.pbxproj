@@ -18,7 +18,9 @@
 		43166EED1D9E6C690061ECF4 /* float4x4+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43166EEC1D9E6C690061ECF4 /* float4x4+Extensions.swift */; };
 		43167D7C19F93AA100929F8C /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43167D7B19F93AA100929F8C /* Vertex.swift */; };
 		43167D7E19F93B2B00929F8C /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43167D7D19F93B2B00929F8C /* Node.swift */; };
-		436D0D091B77E29400483748 /* MetalTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D0D081B77E29400483748 /* MetalTexture.swift */; };
+		780A7EFA1DB96DD700DCDD26 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C457CD1DB56BE00018F588 /* cube.png */; };
+		780A7EFB1DB96E7C00DCDD26 /* flowyz_nx_00600_0004000_vect.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */; };
+		780A7EFC1DB96E8000DCDD26 /* inputVectors.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 786EF0261DAC3A9E006183B2 /* inputVectors.vvt */; };
 		785825CE1DB60D6A00DED72F /* IncomingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785825CD1DB60D6A00DED72F /* IncomingData.swift */; };
 		786EF0271DAC3A9E006183B2 /* inputVectors.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 786EF0261DAC3A9E006183B2 /* inputVectors.vvt */; };
 		786EF0291DAC3DCF006183B2 /* Vectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786EF0281DAC3DCF006183B2 /* Vectors.swift */; };
@@ -250,6 +252,9 @@
 			files = (
 				78DC0C841DB130920037067D /* Assets.xcassets in Resources */,
 				78DC0C871DB130930037067D /* Main.storyboard in Resources */,
+				780A7EFC1DB96E8000DCDD26 /* inputVectors.vvt in Resources */,
+				780A7EFB1DB96E7C00DCDD26 /* flowyz_nx_00600_0004000_vect.vvt in Resources */,
+				780A7EFA1DB96DD700DCDD26 /* cube.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +270,6 @@
 				43166EED1D9E6C690061ECF4 /* float4x4+Extensions.swift in Sources */,
 				78C457CC1DB56A940018F588 /* Light.swift in Sources */,
 				43167D7E19F93B2B00929F8C /* Node.swift in Sources */,
-				436D0D091B77E29400483748 /* MetalTexture.swift in Sources */,
 				0C49914D1A7278730028ECBB /* MySceneViewController.swift in Sources */,
 				43167D7C19F93AA100929F8C /* Vertex.swift in Sources */,
 				0C49914C1A7278730028ECBB /* MetalViewController.swift in Sources */,

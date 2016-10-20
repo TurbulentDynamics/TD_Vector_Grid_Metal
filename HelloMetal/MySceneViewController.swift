@@ -49,7 +49,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
         
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            IncomingData.shared.readDataFromFile(vc: self)
+            IncomingData.shared.readDataFromFile()
             self.readingLabel.text = "Applying multiplier..."
             self.setNewMultiplier()
         }

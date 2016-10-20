@@ -5,7 +5,7 @@ class IncomingData: NSObject {
     static let shared = IncomingData()
     var verticesArray: [[Float]] = []
     
-    func readDataFromFile(vc: MacSceneViewController) {
+    func readDataFromFile() {
         var nx = 0
         let filename = "flowyz_nx_00600_0004000_vect"
         //let filename = "inputVectors"
