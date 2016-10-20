@@ -27,6 +27,8 @@
 		7889D7831DB947C60063CB9E /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35023C6519DDBB29006F3266 /* Shaders.metal */; };
 		789B63A51DB83FF5003C1DD7 /* IncomingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785825CD1DB60D6A00DED72F /* IncomingData.swift */; };
 		78A6FD2E1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */; };
+		78B8066D1DB970860036485D /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8066C1DB970860036485D /* Metal.framework */; };
+		78B8066F1DB9708D0036485D /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8066E1DB9708D0036485D /* MetalKit.framework */; };
 		78C457CC1DB56A940018F588 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C457CB1DB56A940018F588 /* Light.swift */; };
 		78C457CE1DB56BE00018F588 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C457CD1DB56BE00018F588 /* cube.png */; };
 		78C457D11DB57FF80018F588 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C457D01DB57FF80018F588 /* MetalViewController.swift */; };
@@ -61,6 +63,8 @@
 		786EF0261DAC3A9E006183B2 /* inputVectors.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inputVectors.vvt; sourceTree = "<group>"; };
 		786EF0281DAC3DCF006183B2 /* Vectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vectors.swift; sourceTree = "<group>"; };
 		78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flowyz_nx_00600_0004000_vect.vvt; sourceTree = "<group>"; };
+		78B8066C1DB970860036485D /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
+		78B8066E1DB9708D0036485D /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		78C457CB1DB56A940018F588 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		78C457CD1DB56BE00018F588 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube.png; sourceTree = "<group>"; };
 		78C457D01DB57FF80018F588 /* MetalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B8066F1DB9708D0036485D /* MetalKit.framework in Frameworks */,
+				78B8066D1DB970860036485D /* Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +102,7 @@
 				35023C4219DDB96F006F3266 /* HelloMetal */,
 				78DC0C7E1DB130920037067D /* HelloMetalMac */,
 				35023C4119DDB96F006F3266 /* Products */,
+				78B8066B1DB970850036485D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +147,15 @@
 				35023C4419DDB96F006F3266 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78B8066B1DB970850036485D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78B8066E1DB9708D0036485D /* MetalKit.framework */,
+				78B8066C1DB970860036485D /* Metal.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		78DC0C7E1DB130920037067D /* HelloMetalMac */ = {
