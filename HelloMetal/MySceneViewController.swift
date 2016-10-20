@@ -1,45 +1,37 @@
-/**
- * Copyright (c) 2016 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
 import UIKit
 import simd
 
 class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
+    
+    @IBOutlet weak var multiplierLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var readingLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
 
+    
     var worldModelMatrix:float4x4!
     var vectorsObject: Vectors!
+    
     
     let panSensivity:Float = 5.0
     var lastPanLocation: CGPoint!
     var lastDoublePanLocation: CGPoint!
     var lastScale: CGFloat!
     
+    var previousMultiplier: Float!
     var multiplier: Float! {
         didSet {
             multiplierLabel.text = String(format: "multiplier = %.2f", multiplier)
         }
     }
-    
-    @IBOutlet weak var multiplierLabel: UILabel!
+    var timer: Timer! {
+        willSet {
+            if timer != nil { timer.invalidate() }
+        }
+    }
+    var canStartTimer: Bool! = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,11 +41,18 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
         worldModelMatrix.rotateAroundX(0, y: float4x4.degrees(toRad: 90), z: 0.0)
         
         multiplier = 0.05
-        vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
-        vectorsObject.scale = 4
-        self.metalViewControllerDelegate = self
+        vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: 0)
         
+        self.metalViewControllerDelegate = self
         setupGestures()
+        //self.progressView.progress = 0
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            IncomingData.shared.readDataFromFile(vc: self)
+            self.readingLabel.text = "Applying multiplier..."
+            self.setNewMultiplier()
+        }
     }
     
     //MARK: - MetalViewControllerDelegate
@@ -79,6 +78,8 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     
     // 2
     func pan(_ panGesture: UIPanGestureRecognizer) {
+        stopTimer()
+        
         if panGesture.state == .changed {
             let pointInView = panGesture.location(in: self.view)
             
@@ -129,18 +130,70 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
         }
     }
     
-    @IBAction func changeMultiplier(_ sender: UIButton) {
-        multiplier = multiplier + (sender.tag == 1 ? -0.01 : 0.01)
+    @IBAction func buttonUp(_ sender: UIButton) {
+        stopTimer()
+    }
+    
+    @IBAction func buttonTouchDown(_ sender: AnyObject) {
+        changeMultiplier(sender: sender.tag as NSNumber)
+        canStartTimer = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            if self.canStartTimer == true {
+                self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.fireTimer(timer:)), userInfo: ["sender": sender.tag], repeats: true);
+            }
+        }
+    }
+    
+    func fireTimer(timer:Timer!) {
+        let info = timer.userInfo as! [String : NSNumber]
+        let sender = info["sender"]
+        changeMultiplier(sender: sender!)
+    }
+    
+    func stopTimer() {
+        canStartTimer = false
+        timer = nil
+        setNewMultiplier()
+    }
+    
+    func changeMultiplier(sender:NSNumber) {
+        multiplier = multiplier + (sender == 1 ? -0.01 : 0.01)
         multiplier = multiplier <= 0 ? 0 : multiplier
+    }
+    
+    func setNewMultiplier() {
+        if previousMultiplier != multiplier {
+            self.activityIndicator.startAnimating()
+            self.activityIndicator.isHidden = false
+            self.readingLabel.isHidden = false
+            self.plusButton.isEnabled = false
+            self.minusButton.isEnabled = false
 
-        let old = vectorsObject!
-        vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
-        vectorsObject.scale = old.scale
-        vectorsObject.rotationX = old.rotationX
-        vectorsObject.rotationY = old.rotationY
-        vectorsObject.rotationZ = old.rotationZ
-        vectorsObject.positionX = old.positionX
-        vectorsObject.positionY = old.positionY
-        vectorsObject.positionZ = old.positionZ
+            
+            DispatchQueue.global().async {
+                self.previousMultiplier = self.multiplier
+                let old = self.vectorsObject!
+                self.vectorsObject = Vectors(device: self.device, commandQ: self.commandQueue, textureLoader: self.textureLoader, multiplier: self.multiplier)
+                if old.vertexCount != 1 {
+                    self.vectorsObject.scale = old.scale
+                    self.vectorsObject.rotationX = old.rotationX
+                    self.vectorsObject.rotationY = old.rotationY
+                    self.vectorsObject.rotationZ = old.rotationZ
+                    self.vectorsObject.positionX = old.positionX
+                    self.vectorsObject.positionY = old.positionY
+                    self.vectorsObject.positionZ = old.positionZ
+                } else {
+                    self.vectorsObject.scale = 1
+                }
+                
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.readingLabel.isHidden = true
+                    self.plusButton.isEnabled = true
+                    self.minusButton.isEnabled = true
+                }
+            }
+        }
     }
 }

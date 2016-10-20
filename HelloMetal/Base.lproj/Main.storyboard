@@ -34,7 +34,8 @@
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="+"/>
                                             <connections>
-                                                <action selector="changeMultiplier:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KsO-yl-YXR"/>
+                                                <action selector="buttonTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="7L6-xk-zHN"/>
+                                                <action selector="buttonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lpB-xK-Tsl"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IpH-OK-sfI">
@@ -45,7 +46,9 @@
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="-"/>
                                             <connections>
-                                                <action selector="changeMultiplier:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1CQ-s0-bo9"/>
+                                                <action selector="buttonTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="JGA-vX-CUU"/>
+                                                <action selector="buttonUp:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="88e-y4-QgT"/>
+                                                <action selector="buttonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IL4-lZ-NEI"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -66,6 +69,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Mn4-fp-xRc">
+                                <frame key="frameInset" minX="15" minY="15" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reading from file..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxF-6q-X9g">
+                                <frame key="frameInset" minX="60" minY="23" width="150" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9yb-7q-0hh">
+                                <frame key="frameInset" height="2"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -81,8 +99,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Mn4-fp-xRc" id="Eit-n8-DKS"/>
+                        <outlet property="minusButton" destination="IpH-OK-sfI" id="l8J-fy-OL4"/>
                         <outlet property="mtkView" destination="clG-lQ-OEI" id="3Tt-Tt-HFY"/>
                         <outlet property="multiplierLabel" destination="ZAX-Vs-LKV" id="M4X-lL-Ekh"/>
+                        <outlet property="plusButton" destination="9xh-KN-oUm" id="s28-wW-cDs"/>
+                        <outlet property="progressView" destination="9yb-7q-0hh" id="wkb-Hn-V70"/>
+                        <outlet property="readingLabel" destination="YxF-6q-X9g" id="ehW-nH-tUS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

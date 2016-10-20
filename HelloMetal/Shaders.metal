@@ -75,7 +75,7 @@ vertex VertexOut basic_vertex(const device VertexIn* vertex_array [[ buffer(0) ]
     VertexOut VertexOut;
     VertexOut.position = proj_Matrix * mv_Matrix * float4(VertexIn.position,1);
     VertexOut.fragmentPosition = (mv_Matrix * float4(VertexIn.position,1)).xyz;
-    VertexOut.color = VertexIn.color;
+    VertexOut.color = float4(VertexIn.color[0]);//VertexIn.color;
     // 2
     VertexOut.texCoord = VertexIn.texCoord;
     VertexOut.normal = (mv_Matrix * float4(VertexIn.normal, 0.0)).xyz;
@@ -84,7 +84,7 @@ vertex VertexOut basic_vertex(const device VertexIn* vertex_array [[ buffer(0) ]
 }
 
 // 3
-fragment half4 basic_fragment(VertexOut interpolated [[stage_in]],
+fragment float4 basic_fragment(VertexOut interpolated [[stage_in]],
                               const device Uniforms&  uniforms    [[ buffer(1) ]],
                               texture2d<float>  tex2D     [[ texture(0) ]],
                               sampler           sampler2D [[ sampler(0) ]],
@@ -109,5 +109,5 @@ fragment half4 basic_fragment(VertexOut interpolated [[stage_in]],
     float4 color = tex2D.sample(sampler2D, interpolated.texCoord);
     //return color * (ambientColor + diffuseColor + specularColor);
     */
-    return half4(1.0);
+    return float4(interpolated.color[0]);
 }

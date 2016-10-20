@@ -9,7 +9,7 @@
 import Cocoa
 import simd
 
-class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
+class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
 
     var worldModelMatrix:float4x4!
     var vectorsObject: Vectors!
