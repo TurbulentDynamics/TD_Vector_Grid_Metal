@@ -22,6 +22,7 @@
 		785825CE1DB60D6A00DED72F /* IncomingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785825CD1DB60D6A00DED72F /* IncomingData.swift */; };
 		786EF0271DAC3A9E006183B2 /* inputVectors.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 786EF0261DAC3A9E006183B2 /* inputVectors.vvt */; };
 		786EF0291DAC3DCF006183B2 /* Vectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786EF0281DAC3DCF006183B2 /* Vectors.swift */; };
+		7889D7831DB947C60063CB9E /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35023C6519DDBB29006F3266 /* Shaders.metal */; };
 		789B63A51DB83FF5003C1DD7 /* IncomingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785825CD1DB60D6A00DED72F /* IncomingData.swift */; };
 		78A6FD2E1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */; };
 		78C457CC1DB56A940018F588 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C457CB1DB56A940018F588 /* Light.swift */; };
@@ -286,6 +287,7 @@
 				78C457D61DB583800018F588 /* BufferProvider.swift in Sources */,
 				78C457D31DB582820018F588 /* Vectors.swift in Sources */,
 				78C457D51DB583770018F588 /* Vertex.swift in Sources */,
+				7889D7831DB947C60063CB9E /* Shaders.metal in Sources */,
 				78C457D11DB57FF80018F588 /* MetalViewController.swift in Sources */,
 				789B63A51DB83FF5003C1DD7 /* IncomingData.swift in Sources */,
 			);
