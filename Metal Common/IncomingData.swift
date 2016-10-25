@@ -5,14 +5,9 @@ class IncomingData: NSObject {
     static let shared = IncomingData()
     var verticesArray: [[Float]] = []
     
-    func readDataFromFile() {
+    func readDataFromFile(contents: String) {
         var nx = 0
-        let filename = "flowyz_nx_00600_0004000_vect"
-        //let filename = "inputVectors"
-        
-        let filepath = Bundle.main.path(forResource: filename, ofType: "vvt")!
-        
-        let contents = try! String(contentsOfFile: filepath)
+
         let arrayOfLines = contents.components(separatedBy: "\n")
         
         var j = 0

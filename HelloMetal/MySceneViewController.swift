@@ -9,7 +9,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
-
+    
     
     var worldModelMatrix:float4x4!
     var vectorsObject: Vectors!
@@ -49,9 +49,15 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
         
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            IncomingData.shared.readDataFromFile()
-            self.readingLabel.text = "Applying multiplier..."
-            self.setNewMultiplier()
+            //let filename = "flowyz_nx_00600_0004000_vect"
+            let filename = "inputVectors"
+            let filepath = Bundle.main.path(forResource: filename, ofType: "vvt")!
+
+            if let contents = try? String(contentsOfFile: filepath) {
+                IncomingData.shared.readDataFromFile(contents: contents)
+                self.readingLabel.text = "Applying multiplier..."
+                self.setNewMultiplier()
+            }
         }
     }
     
@@ -168,7 +174,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
             self.readingLabel.isHidden = false
             self.plusButton.isEnabled = false
             self.minusButton.isEnabled = false
-
+            
             
             DispatchQueue.global().async {
                 self.previousMultiplier = self.multiplier

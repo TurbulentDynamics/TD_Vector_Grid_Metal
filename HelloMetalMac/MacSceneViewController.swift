@@ -15,9 +15,7 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
     var vectorsObject: Vectors!
     
     let panSensivity:Float = 5.0
-    var lastPanLocation: CGPoint!
-    var lastDoublePanLocation: CGPoint!
-    var lastScale: CGFloat!
+    var lastLocation: CGPoint!
     
     var multiplier: Float! {
         didSet {
@@ -41,20 +39,49 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
         vectorsObject.scale = 1
         self.metalViewControllerDelegate = self
-
-        //setupGestures()
     }
     
     override func scrollWheel(with event: NSEvent) {
-        print(event)
+        print(event.deltaY)
+        
+        vectorsObject.scale -= Float(event.deltaY) * vectorsObject.scale
     }
-
+    
+    override func mouseDown(with event: NSEvent) {
+        print(event.locationInWindow.x)
+        lastLocation = event.locationInWindow
+    }
+    
+    
     override func mouseDragged(with event: NSEvent) {
-        print(event)
+        //print(event.locationInWindow.x)
+        
+        let xDelta = Float((lastLocation.x - event.locationInWindow.x)/self.view.bounds.width) * panSensivity
+        let yDelta = Float((lastLocation.y - event.locationInWindow.y)/self.view.bounds.height) * panSensivity
+        
+        print("xDelta: \(xDelta), yDelta: \(yDelta)")
+        
+        vectorsObject.rotationY -= xDelta
+        vectorsObject.rotationZ -= yDelta
+        
+        lastLocation = event.locationInWindow
+        
     }
     override func rightMouseDragged(with event: NSEvent) {
-        print(event)
+        //print(event.locationInWindow.x)
+        
+        
+        let xDelta = Float((lastLocation.x - event.locationInWindow.x)/self.view.bounds.width)
+        let yDelta = Float((lastLocation.y - event.locationInWindow.y)/self.view.bounds.height)
+        
+        print("xDelta: \(xDelta), yDelta: \(yDelta)")
+        
+        vectorsObject.rotationZ -= xDelta
+        vectorsObject.rotationY += yDelta
+        
+        lastLocation = event.locationInWindow
     }
+    
 
 
     //MARK: - MetalViewControllerDelegate
@@ -66,83 +93,7 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
     func updateLogic(_ timeSinceLastUpdate: CFTimeInterval) {
         vectorsObject.updateWithDelta(timeSinceLastUpdate)
     }
-    /*
-    //MARK: - Gesture related
-    // 1
-    func setupGestures() {
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(MySceneViewController.pan(_:)))
-        pan.maximumNumberOfTouches = 2
-        self.view.addGestureRecognizer(pan)
-        
-        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinch(pinchGesture:)))
-        self.view.addGestureRecognizer(pinch)
-    }
+
     
-    // 2
-    func pan(_ panGesture: UIPanGestureRecognizer) {
-        if panGesture.state == .changed {
-            let pointInView = panGesture.location(in: self.view)
-            
-            if panGesture.numberOfTouches == 1 {
-                if (lastPanLocation == .zero) {
-                    lastDoublePanLocation = .zero
-                } else {
-                    let xDelta = Float((lastPanLocation.x - pointInView.x)/self.view.bounds.width) * panSensivity
-                    let yDelta = Float((lastPanLocation.y - pointInView.y)/self.view.bounds.height) * panSensivity
-                    
-                    vectorsObject.rotationY -= xDelta
-                    vectorsObject.rotationZ -= yDelta
-                }
-                lastPanLocation = pointInView
-                
-            } else if panGesture.numberOfTouches == 2 {
-                if (lastDoublePanLocation == .zero) {
-                    lastPanLocation = .zero
-                } else {
-                    
-                    let xDelta = Float((lastDoublePanLocation.x - pointInView.x)/self.view.bounds.width)
-                    let yDelta = Float((lastDoublePanLocation.y - pointInView.y)/self.view.bounds.height)
-                    
-                    vectorsObject.positionZ -= xDelta
-                    vectorsObject.positionY += yDelta
-                }
-                lastDoublePanLocation = pointInView
-                
-            }
-        } else if panGesture.state == .began {
-            if panGesture.numberOfTouches == 1 {
-                lastPanLocation = panGesture.location(in: self.view)
-            } else if panGesture.numberOfTouches == 2 {
-                lastDoublePanLocation = panGesture.location(in: self.view)
-            }
-        } else if panGesture.state == .ended {
-            lastPanLocation = .zero
-            lastDoublePanLocation = .zero
-        }
-    }
     
-    func pinch(pinchGesture: UIPinchGestureRecognizer){
-        if pinchGesture.state == UIGestureRecognizerState.changed{
-            vectorsObject.scale -= Float(lastScale - pinchGesture.scale) * vectorsObject.scale
-            lastScale = pinchGesture.scale
-        } else if pinchGesture.state == UIGestureRecognizerState.began{
-            lastScale = pinchGesture.scale
-        }
-    }
-    
-    @IBAction func changeMultiplier(_ sender: UIButton) {
-        multiplier = multiplier + (sender.tag == 1 ? -0.01 : 0.01)
-        multiplier = multiplier <= 0 ? 0 : multiplier
-        
-        let old = vectorsObject!
-        vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
-        vectorsObject.scale = old.scale
-        vectorsObject.rotationX = old.rotationX
-        vectorsObject.rotationY = old.rotationY
-        vectorsObject.rotationZ = old.rotationZ
-        vectorsObject.positionX = old.positionX
-        vectorsObject.positionY = old.positionY
-        vectorsObject.positionZ = old.positionZ
-    }
-*/
 }
