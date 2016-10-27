@@ -9,6 +9,7 @@ class IncomingData: NSObject {
         var nx = 0
 
         let arrayOfLines = contents.components(separatedBy: "\n")
+        self.verticesArray = []
         
         var j = 0
         var percentDone = 0
@@ -39,9 +40,8 @@ class IncomingData: NSObject {
 
                 let p = Int(100 * j/arrayOfLines.count)
                 if percentDone < p {
-                    percentDone = p
+                    percentDone = p + 9
                     print("\(percentDone)%")
-                    //vc.progressView.setProgress(Float(percentDone) / 100.0, animated: false)
                 }
             } else if points.count == 2 && points[0] == points[1] {
                 nx = Int(points[0])!

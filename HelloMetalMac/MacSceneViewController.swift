@@ -34,47 +34,40 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         worldModelMatrix.translate(0.0, y: 0.0, z: -1)
         worldModelMatrix.rotateAroundX(0, y: float4x4.degrees(toRad: 90), z: 0.0)
         
-        IncomingData.shared.readDataFromFile()
-        
-        vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
-        vectorsObject.scale = 1
-        self.metalViewControllerDelegate = self
+        //let filename = "flowyz_nx_00600_0004000_vect"
+        let filename = "inputVectors"
+        let filepath = Bundle.main.path(forResource: filename, ofType: "vvt")!
+
+        if let contents = try? String(contentsOfFile: filepath) {
+            IncomingData.shared.readDataFromFile(contents: contents)
+            vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
+            vectorsObject.scale = 1
+            self.metalViewControllerDelegate = self
+        }
     }
     
     override func scrollWheel(with event: NSEvent) {
-        print(event.deltaY)
-        
         vectorsObject.scale -= Float(event.deltaY) * vectorsObject.scale
     }
     
     override func mouseDown(with event: NSEvent) {
-        print(event.locationInWindow.x)
         lastLocation = event.locationInWindow
     }
     
     
     override func mouseDragged(with event: NSEvent) {
-        //print(event.locationInWindow.x)
-        
         let xDelta = Float((lastLocation.x - event.locationInWindow.x)/self.view.bounds.width) * panSensivity
         let yDelta = Float((lastLocation.y - event.locationInWindow.y)/self.view.bounds.height) * panSensivity
-        
-        print("xDelta: \(xDelta), yDelta: \(yDelta)")
         
         vectorsObject.rotationY -= xDelta
         vectorsObject.rotationZ -= yDelta
         
         lastLocation = event.locationInWindow
-        
     }
+    
     override func rightMouseDragged(with event: NSEvent) {
-        //print(event.locationInWindow.x)
-        
-        
         let xDelta = Float((lastLocation.x - event.locationInWindow.x)/self.view.bounds.width)
         let yDelta = Float((lastLocation.y - event.locationInWindow.y)/self.view.bounds.height)
-        
-        print("xDelta: \(xDelta), yDelta: \(yDelta)")
         
         vectorsObject.rotationZ -= xDelta
         vectorsObject.rotationY += yDelta

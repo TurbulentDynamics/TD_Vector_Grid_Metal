@@ -1,7 +1,7 @@
 import UIKit
 import simd
 
-class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
+class MySceneViewController: MetalViewController, MetalViewControllerDelegate, UIDocumentPickerDelegate {
     
     @IBOutlet weak var multiplierLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -13,7 +13,6 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
     
     var worldModelMatrix:float4x4!
     var vectorsObject: Vectors!
-    
     
     let panSensivity:Float = 5.0
     var lastPanLocation: CGPoint!
@@ -45,19 +44,95 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate {
         
         self.metalViewControllerDelegate = self
         setupGestures()
-        //self.progressView.progress = 0
         
+        self.activityIndicator.isHidden = true
+        self.readingLabel.isHidden = true
+        self.plusButton.isEnabled = false
+        self.minusButton.isEnabled = false
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            //let filename = "flowyz_nx_00600_0004000_vect"
-            let filename = "inputVectors"
-            let filepath = Bundle.main.path(forResource: filename, ofType: "vvt")!
-
-            if let contents = try? String(contentsOfFile: filepath) {
-                IncomingData.shared.readDataFromFile(contents: contents)
-                self.readingLabel.text = "Applying multiplier..."
-                self.setNewMultiplier()
+        return
+        /*
+         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+         
+         let fm = FileManager.default
+         print("token \(fm.ubiquityIdentityToken)")
+         
+         let ubiq = fm.url(forUbiquityContainerIdentifier: nil)
+         if (ubiq == nil) {
+         print("no cloud file")
+         return
+         }
+         
+         print("ubiq \(ubiq)")
+         
+         let iCloudDocumentsURL = ubiq!.appendingPathComponent("Documents/inputVectors.vvt")
+         
+         print("iCloudDocumentsURL \(iCloudDocumentsURL)")
+         
+         
+         let isUbiq = fm.isUbiquitousItem(at: iCloudDocumentsURL)
+         print("Documents \(isUbiq)")
+         
+         
+         
+         //let filename = "flowyz_nx_00600_0004000_vect"
+         let filename = "inputVectors"
+         _ = Bundle.main.path(forResource: filename, ofType: "vvt")!
+         let started = try? fm.startDownloadingUbiquitousItem(at: iCloudDocumentsURL)
+         print(started)
+         
+         if let contents = try? String(contentsOfFile: iCloudDocumentsURL.absoluteString) {
+         print(contents)
+         IncomingData.shared.readDataFromFile(contents: contents)
+         self.readingLabel.text = "Applying multiplier..."
+         self.setNewMultiplier()
+         }
+         print(try? String(contentsOfFile: iCloudDocumentsURL.absoluteString))
+         }
+         */
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        openVVTFile(self)
+    }
+    
+    @IBAction func openVVTFile(_ sender: AnyObject) {
+        let documentPicker = UIDocumentPickerViewController.init(documentTypes: ["public.data.vvt"], in: .open)
+        documentPicker.delegate = self
+        self.present(documentPicker, animated: true) { }
+    }
+    
+    
+    //MARK: - UIDocumentPickerDelegate
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        
+        DispatchQueue.global().async {
+            
+            _ = url.startAccessingSecurityScopedResource()
+            
+            let coordinator = NSFileCoordinator()
+            coordinator.coordinate(readingItemAt: url, options: [], error: nil) { (newURL) in
+                if let contents = try? String(contentsOf: newURL) {
+                    
+                    DispatchQueue.main.async {
+                        self.readingLabel.text = "Reading from file..."
+                        self.activityIndicator.startAnimating()
+                        self.activityIndicator.isHidden = false
+                        self.readingLabel.isHidden = false
+                        self.plusButton.isEnabled = false
+                        self.minusButton.isEnabled = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            IncomingData.shared.readDataFromFile(contents: contents)
+                            self.previousMultiplier = 0
+                            self.readingLabel.text = "Applying multiplier..."
+                            self.setNewMultiplier()
+                        }
+                    }
+                }
             }
+            
+            url.stopAccessingSecurityScopedResource()
         }
     }
     
