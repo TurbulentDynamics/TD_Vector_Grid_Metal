@@ -27,22 +27,21 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        multiplier = 0.05
         
         worldModelMatrix = float4x4()
-        worldModelMatrix.translate(0.0, y: 0.0, z: -1)
-        worldModelMatrix.rotateAroundX(0, y: float4x4.degrees(toRad: 90), z: 0.0)
         
-        //let filename = "flowyz_nx_00600_0004000_vect"
-        let filename = "inputVectors"
-        let filepath = Bundle.main.path(forResource: filename, ofType: "vvt")!
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "OpenFile"), object: nil, queue: .current) { notification in
+            if let contents = notification.object {
+                IncomingData.shared.readDataFromFile(contents: contents)
+                vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
+                vectorsObject.scale = 1
+                self.metalViewControllerDelegate = self
+                
+                multiplier = 0.05
+                worldModelMatrix.translate(0.0, y: 0.0, z: -1)
+                worldModelMatrix.rotateAroundX(0, y: float4x4.degrees(toRad: 90), z: 0.0)
 
-        if let contents = try? String(contentsOfFile: filepath) {
-            IncomingData.shared.readDataFromFile(contents: contents)
-            vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: multiplier)
-            vectorsObject.scale = 1
-            self.metalViewControllerDelegate = self
+            }
         }
     }
     
