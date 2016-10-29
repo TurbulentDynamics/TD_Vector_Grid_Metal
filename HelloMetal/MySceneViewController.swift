@@ -51,45 +51,6 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
         self.minusButton.isEnabled = false
         
         return
-        /*
-         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-         
-         let fm = FileManager.default
-         print("token \(fm.ubiquityIdentityToken)")
-         
-         let ubiq = fm.url(forUbiquityContainerIdentifier: nil)
-         if (ubiq == nil) {
-         print("no cloud file")
-         return
-         }
-         
-         print("ubiq \(ubiq)")
-         
-         let iCloudDocumentsURL = ubiq!.appendingPathComponent("Documents/inputVectors.vvt")
-         
-         print("iCloudDocumentsURL \(iCloudDocumentsURL)")
-         
-         
-         let isUbiq = fm.isUbiquitousItem(at: iCloudDocumentsURL)
-         print("Documents \(isUbiq)")
-         
-         
-         
-         //let filename = "flowyz_nx_00600_0004000_vect"
-         let filename = "inputVectors"
-         _ = Bundle.main.path(forResource: filename, ofType: "vvt")!
-         let started = try? fm.startDownloadingUbiquitousItem(at: iCloudDocumentsURL)
-         print(started)
-         
-         if let contents = try? String(contentsOfFile: iCloudDocumentsURL.absoluteString) {
-         print(contents)
-         IncomingData.shared.readDataFromFile(contents: contents)
-         self.readingLabel.text = "Applying multiplier..."
-         self.setNewMultiplier()
-         }
-         print(try? String(contentsOfFile: iCloudDocumentsURL.absoluteString))
-         }
-         */
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -124,7 +85,9 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
                         self.minusButton.isEnabled = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             IncomingData.shared.readDataFromFile(contents: contents)
+
                             self.previousMultiplier = 0
+                            self.multiplier = 0.05
                             self.readingLabel.text = "Applying multiplier..."
                             self.setNewMultiplier()
                         }
@@ -220,7 +183,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
         canStartTimer = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             if self.canStartTimer == true {
-                self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.fireTimer(timer:)), userInfo: ["sender": sender.tag], repeats: true);
+                self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.fireTimer(timer:)), userInfo: ["sender": sender.tag], repeats: true);
             }
         }
     }
@@ -255,7 +218,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
                 self.previousMultiplier = self.multiplier
                 let old = self.vectorsObject!
                 self.vectorsObject = Vectors(device: self.device, commandQ: self.commandQueue, textureLoader: self.textureLoader, multiplier: self.multiplier)
-                if old.vertexCount != 1 {
+                if old.vertexCount == self.vectorsObject.vertexCount {
                     self.vectorsObject.scale = old.scale
                     self.vectorsObject.rotationX = old.rotationX
                     self.vectorsObject.rotationY = old.rotationY
@@ -263,8 +226,14 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
                     self.vectorsObject.positionX = old.positionX
                     self.vectorsObject.positionY = old.positionY
                     self.vectorsObject.positionZ = old.positionZ
-                } else {
+                } else { // new file
                     self.vectorsObject.scale = 1
+                    self.vectorsObject.rotationX = 0
+                    self.vectorsObject.rotationY = 0
+                    self.vectorsObject.rotationZ = 0
+                    self.vectorsObject.positionX = 0
+                    self.vectorsObject.positionY = 0
+                    self.vectorsObject.positionZ = 0
                 }
                 
                 DispatchQueue.main.async {

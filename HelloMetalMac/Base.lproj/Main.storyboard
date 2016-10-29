@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -699,10 +701,34 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Od4-ba-WG6">
+                                                <rect key="frame" x="97" y="8" width="47" height="32"/>
+                                                <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Es-cZ-OWT">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonChangeMultiplier:" target="XfG-lQ-9wD" id="bhQ-Y3-UQh"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uvV-Tb-4Pi">
+                                                <rect key="frame" x="336" y="8" width="49" height="32"/>
+                                                <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bOB-tG-lfM">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonChangeMultiplier:" target="XfG-lQ-9wD" id="0Qr-Y5-D0F"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="Od4-ba-WG6" firstAttribute="centerX" secondItem="7B7-4M-Pgm" secondAttribute="centerX" multiplier="0.5" id="Bzr-xE-MaH"/>
                                             <constraint firstItem="yeu-mw-Mga" firstAttribute="centerX" secondItem="7B7-4M-Pgm" secondAttribute="centerX" id="EJ2-9x-0pX"/>
                                             <constraint firstAttribute="height" constant="50" id="FV5-aX-5hU"/>
+                                            <constraint firstItem="uvV-Tb-4Pi" firstAttribute="centerX" secondItem="7B7-4M-Pgm" secondAttribute="trailing" multiplier="0.75" id="JaK-tK-Cwv"/>
+                                            <constraint firstItem="uvV-Tb-4Pi" firstAttribute="centerY" secondItem="7B7-4M-Pgm" secondAttribute="centerY" id="dve-Zf-3X8"/>
+                                            <constraint firstItem="Od4-ba-WG6" firstAttribute="centerY" secondItem="7B7-4M-Pgm" secondAttribute="centerY" id="fB1-bY-y3B"/>
                                             <constraint firstItem="yeu-mw-Mga" firstAttribute="centerY" secondItem="7B7-4M-Pgm" secondAttribute="centerY" id="qOm-Mz-Frq"/>
                                         </constraints>
                                     </customView>
@@ -722,8 +748,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="minusButton" destination="Od4-ba-WG6" id="ia4-lk-f6k"/>
                         <outlet property="mtkView" destination="Imv-ew-RJK" id="vyA-QS-rfG"/>
                         <outlet property="multiplierLabel" destination="yeu-mw-Mga" id="3sv-vo-7wd"/>
+                        <outlet property="plusButton" destination="uvV-Tb-4Pi" id="zh5-Er-H2q"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
