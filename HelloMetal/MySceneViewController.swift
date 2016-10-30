@@ -20,17 +20,10 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
     var lastScale: CGFloat!
     
     var previousMultiplier: Float!
-    var multiplier: Float! {
-        didSet {
-            multiplierLabel.text = String(format: "multiplier = %.2f", multiplier)
-        }
-    }
-    var timer: Timer! {
-        willSet {
-            if timer != nil { timer.invalidate() }
-        }
-    }
+    var multiplier: Float! { didSet  { multiplierLabel.text = String(format: "multiplier = %.2f", multiplier) }}
+    var timer: Timer!      { willSet { if timer != nil { timer.invalidate() } }}
     var canStartTimer: Bool! = false
+    var newFile: Bool! = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +60,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
     
     //MARK: - UIDocumentPickerDelegate
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        controller.removeFromParentViewController()
         
         DispatchQueue.global().async {
             
@@ -75,6 +69,8 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
             let coordinator = NSFileCoordinator()
             coordinator.coordinate(readingItemAt: url, options: [], error: nil) { (newURL) in
                 if let contents = try? String(contentsOf: newURL) {
+                    
+                    self.newFile = true
                     
                     DispatchQueue.main.async {
                         self.readingLabel.text = "Reading from file..."
@@ -136,6 +132,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
                     
                     vectorsObject.rotationY -= xDelta
                     vectorsObject.rotationZ -= yDelta
+                    //print("\(vectorsObject.rotationX), \(vectorsObject.rotationY), \(vectorsObject.rotationZ)")
                 }
                 lastPanLocation = pointInView
                 
@@ -147,8 +144,8 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
                     let xDelta = Float((lastDoublePanLocation.x - pointInView.x)/self.view.bounds.width)
                     let yDelta = Float((lastDoublePanLocation.y - pointInView.y)/self.view.bounds.height)
                     
-                    vectorsObject.positionZ -= xDelta
-                    vectorsObject.positionY += yDelta
+                    vectorsObject.positionZ -= xDelta * 2.5
+                    vectorsObject.positionY += yDelta * 2
                 }
                 lastDoublePanLocation = pointInView
                 
@@ -218,15 +215,8 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
                 self.previousMultiplier = self.multiplier
                 let old = self.vectorsObject!
                 self.vectorsObject = Vectors(device: self.device, commandQ: self.commandQueue, textureLoader: self.textureLoader, multiplier: self.multiplier)
-                if old.vertexCount == self.vectorsObject.vertexCount {
-                    self.vectorsObject.scale = old.scale
-                    self.vectorsObject.rotationX = old.rotationX
-                    self.vectorsObject.rotationY = old.rotationY
-                    self.vectorsObject.rotationZ = old.rotationZ
-                    self.vectorsObject.positionX = old.positionX
-                    self.vectorsObject.positionY = old.positionY
-                    self.vectorsObject.positionZ = old.positionZ
-                } else { // new file
+                if self.newFile == true { // new file
+                    self.newFile = false
                     self.vectorsObject.scale = 1
                     self.vectorsObject.rotationX = 0
                     self.vectorsObject.rotationY = 0
@@ -234,6 +224,14 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
                     self.vectorsObject.positionX = 0
                     self.vectorsObject.positionY = 0
                     self.vectorsObject.positionZ = 0
+                } else {
+                    self.vectorsObject.scale = old.scale
+                    self.vectorsObject.rotationX = old.rotationX
+                    self.vectorsObject.rotationY = old.rotationY
+                    self.vectorsObject.rotationZ = old.rotationZ
+                    self.vectorsObject.positionX = old.positionX
+                    self.vectorsObject.positionY = old.positionY
+                    self.vectorsObject.positionZ = old.positionZ
                 }
                 
                 DispatchQueue.main.async {

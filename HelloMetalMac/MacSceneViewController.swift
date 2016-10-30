@@ -27,6 +27,8 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         }
     }
     
+    var newFile: Bool! = true
+    
     @IBOutlet weak var multiplierLabel: NSTextField!
     
     override func viewDidLoad() {
@@ -40,6 +42,8 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "OpenFile"), object: nil, queue: .current) { notification in
             if let contents = notification.object as? String {
+                self.newFile = true
+
                 IncomingData.shared.readDataFromFile(contents: contents)
                 self.previousMultiplier = 0
                 self.multiplier = 0.05
@@ -60,7 +64,6 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         lastLocation = event.locationInWindow
     }
     
-    
     override func mouseDragged(with event: NSEvent) {
         let xDelta = Float((lastLocation.x - event.locationInWindow.x)/self.view.bounds.width) * panSensivity
         let yDelta = Float((lastLocation.y - event.locationInWindow.y)/self.view.bounds.height) * panSensivity
@@ -71,12 +74,16 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         lastLocation = event.locationInWindow
     }
     
+    override func rightMouseDown(with event: NSEvent) {
+        lastLocation = event.locationInWindow
+    }
+
     override func rightMouseDragged(with event: NSEvent) {
         let xDelta = Float((lastLocation.x - event.locationInWindow.x)/self.view.bounds.width)
         let yDelta = Float((lastLocation.y - event.locationInWindow.y)/self.view.bounds.height)
         
         vectorsObject.positionZ -= xDelta
-        vectorsObject.positionY += yDelta
+        vectorsObject.positionY -= yDelta
         
         lastLocation = event.locationInWindow
     }
@@ -84,7 +91,7 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
     @IBAction func buttonChangeMultiplier(_ sender: NSButton) {
         multiplier = multiplier + (sender.tag == 1 ? -0.01 : 0.01)
         multiplier = multiplier <= 0 ? 0 : multiplier
-        self.setNewMultiplier()
+        if multiplier > 0 { self.setNewMultiplier() }
     }
     
     func setNewMultiplier() {
@@ -96,7 +103,16 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
                 self.previousMultiplier = self.multiplier
                 let old = self.vectorsObject!
                 self.vectorsObject = Vectors(device: self.device, commandQ: self.commandQueue, textureLoader: self.textureLoader, multiplier: self.multiplier)
-                if old.vertexCount != 1 {
+                if self.newFile == true { // new file
+                    self.newFile = false
+                    self.vectorsObject.scale = 1
+                    self.vectorsObject.rotationX = 0
+                    self.vectorsObject.rotationY = 0
+                    self.vectorsObject.rotationZ = 0
+                    self.vectorsObject.positionX = 0
+                    self.vectorsObject.positionY = 0
+                    self.vectorsObject.positionZ = 0
+                } else {
                     self.vectorsObject.scale = old.scale
                     self.vectorsObject.rotationX = old.rotationX
                     self.vectorsObject.rotationY = old.rotationY
@@ -104,8 +120,6 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
                     self.vectorsObject.positionX = old.positionX
                     self.vectorsObject.positionY = old.positionY
                     self.vectorsObject.positionZ = old.positionZ
-                } else {
-                    self.vectorsObject.scale = 1
                 }
                 
                 DispatchQueue.main.async {

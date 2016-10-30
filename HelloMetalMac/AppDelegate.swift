@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         openPanel.begin() { result in
             if result == NSFileHandlingPanelOKButton {
-                let string = try! String.init(contentsOf: openPanel.urls.first!)
+                let string = try? String.init(contentsOf: openPanel.urls.first!)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "OpenFile"), object: string)
             }
         }

@@ -7,7 +7,7 @@ class IncomingData: NSObject {
     
     func readDataFromFile(contents: String) {
         var nx = 0
-
+        
         let arrayOfLines = contents.components(separatedBy: "\n")
         self.verticesArray = []
         
@@ -15,7 +15,14 @@ class IncomingData: NSObject {
         var percentDone = 0
         var lowerColor:Float = FLT_MAX
         var upperColor:Float = 0
-        print(Date())
+        //print(Date())
+        
+        /*
+         let d: Float = 0.05
+         self.verticesArray += [[-d, 0, 0, 999, 0, 0, 0, 0, 0, 0, 0, 0, d, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+         self.verticesArray += [[0, -d, 0, 999, 0, 0, 0, 0, 0, 0, 0, 0, 0, d, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+         self.verticesArray += [[0, 0, -d, 999, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, d, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+         */
         
         for item in arrayOfLines {
             let points = item.components(separatedBy:" ").filter{$0 != ""}
@@ -37,7 +44,7 @@ class IncomingData: NSObject {
                 let end = [x, y, z, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 
                 self.verticesArray += [startPoint + end]
-
+                
                 let p = Int(100 * j/arrayOfLines.count)
                 if percentDone < p {
                     percentDone = p + 9
@@ -47,7 +54,7 @@ class IncomingData: NSObject {
                 nx = Int(points[0])!
             }
         }
-        print(Date())
+        //print(Date())
         self.verticesArray = self.verticesArray.map{ points -> [Float] in
             var item = points
             item[3] = (item[3] - lowerColor) / (upperColor-lowerColor)
@@ -63,7 +70,7 @@ class IncomingData: NSObject {
             item[14] = multiplier * item[14]
             return item
         }
-
+        
         return newVerticesArray
     }
     
