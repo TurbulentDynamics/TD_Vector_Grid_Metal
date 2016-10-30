@@ -75,8 +75,8 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         let xDelta = Float((lastLocation.x - event.locationInWindow.x)/self.view.bounds.width)
         let yDelta = Float((lastLocation.y - event.locationInWindow.y)/self.view.bounds.height)
         
-        vectorsObject.rotationZ -= xDelta
-        vectorsObject.rotationY += yDelta
+        vectorsObject.positionZ -= xDelta
+        vectorsObject.positionY += yDelta
         
         lastLocation = event.locationInWindow
     }
