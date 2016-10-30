@@ -251,7 +251,6 @@
 					};
 					78DC0C7C1DB130920037067D = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 42XF78PWA9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -509,7 +508,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 42XF78PWA9;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HelloMetalMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = altima.HelloMetalMac;
@@ -533,7 +532,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 42XF78PWA9;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HelloMetalMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = altima.HelloMetalMac;
