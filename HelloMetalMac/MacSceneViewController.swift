@@ -33,8 +33,11 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         super.viewDidLoad()
         
         worldModelMatrix = float4x4()
-        self.metalViewControllerDelegate = self
+        metalViewControllerDelegate = self
         
+        multiplier = 0.05
+        vectorsObject = Vectors(device: device, commandQ: commandQueue, textureLoader: textureLoader, multiplier: 0)
+
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "OpenFile"), object: nil, queue: .current) { notification in
             if let contents = notification.object as? String {
                 IncomingData.shared.readDataFromFile(contents: contents)
