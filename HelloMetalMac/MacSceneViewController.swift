@@ -84,6 +84,7 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
     @IBAction func buttonChangeMultiplier(_ sender: NSButton) {
         multiplier = multiplier + (sender.tag == 1 ? -0.01 : 0.01)
         multiplier = multiplier <= 0 ? 0 : multiplier
+        self.setNewMultiplier()
     }
     
     func setNewMultiplier() {
