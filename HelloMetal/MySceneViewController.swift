@@ -60,7 +60,6 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
     
     //MARK: - UIDocumentPickerDelegate
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        controller.removeFromParentViewController()
         
         DispatchQueue.global().async {
             
@@ -86,6 +85,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
                             self.multiplier = 0.05
                             self.readingLabel.text = "Applying multiplier..."
                             self.setNewMultiplier()
+                            controller.removeFromParentViewController()
                         }
                     }
                 }
