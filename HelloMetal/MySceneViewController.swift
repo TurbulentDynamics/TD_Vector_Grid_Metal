@@ -20,7 +20,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
     var lastScale: CGFloat!
     
     var previousMultiplier: Float!
-    var multiplier: Float! { didSet  { multiplierLabel.text = String(format: "multiplier = %.2f", multiplier) }}
+    var multiplier: Float! { didSet  { multiplierLabel.text = String(format: "%.2f", multiplier) }}
     var timer: Timer!      { willSet { if timer != nil { timer.invalidate() } }}
     var canStartTimer: Bool! = false
     var newFile: Bool! = true
@@ -43,12 +43,9 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
         self.plusButton.isEnabled = false
         self.minusButton.isEnabled = false
         
-        return
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        openVVTFile(self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.openVVTFile(self)
+        }
     }
     
     @IBAction func openVVTFile(_ sender: AnyObject) {
@@ -60,11 +57,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
     
     //MARK: - UIDocumentPickerDelegate
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            controller.removeFromParentViewController()
-        } else {
-            controller.dismiss(animated: true, completion: nil)
-        }
+        controller.dismiss(animated: true, completion: nil)
         
         DispatchQueue.global().async {
             
