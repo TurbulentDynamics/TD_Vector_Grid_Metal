@@ -31,6 +31,8 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
     
     @IBOutlet weak var multiplierLabel: NSTextField!
     
+    // MARK: - View
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +55,14 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
                 self.worldModelMatrix.translate(0.0, y: 0.0, z: -1)
                 self.worldModelMatrix.rotateAroundX(0, y: float4x4.degrees(toRad: 90), z: 0.0)
             }
+        }
+    }
+
+    override func viewDidAppear() {
+        if let url = Bundle.main.url(forResource: "inputVectors", withExtension: "vvt") {
+            let string = try? String.init(contentsOf: url)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "OpenFile"), object: string)
+            
         }
     }
     
@@ -89,7 +99,7 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
     }
     
     @IBAction func buttonChangeMultiplier(_ sender: NSButton) {
-        multiplier = multiplier + (sender.tag == 1 ? -0.01 : 0.01)
+        multiplier = multiplier + (sender.tag == 1 ? 0.01 : -0.01)
         multiplier = multiplier <= 0 ? 0 : multiplier
         if multiplier > 0 { self.setNewMultiplier() }
     }

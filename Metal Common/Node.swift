@@ -109,7 +109,7 @@ class Node {
       sampler.rAddressMode          = MTLSamplerAddressMode.clampToEdge
       sampler.normalizedCoordinates = true
       sampler.lodMinClamp           = 0
-      sampler.lodMaxClamp           = FLT_MAX
+      sampler.lodMaxClamp           = .greatestFiniteMagnitude
     }
     else {
       print(">> ERROR: Failed creating a sampler descriptor!")

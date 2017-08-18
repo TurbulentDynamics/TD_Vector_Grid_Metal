@@ -13,7 +13,7 @@ class IncomingData: NSObject {
         
         var j = 0
         var percentDone = 0
-        var lowerColor:Float = FLT_MAX
+        var lowerColor:Float = .greatestFiniteMagnitude
         var upperColor:Float = 0
         //print(Date())
         
