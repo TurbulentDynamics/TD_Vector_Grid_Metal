@@ -51,7 +51,7 @@
 		0C729A621F47686E00AE4434 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
 		0C729A641F47687200AE4434 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		0C9DA0AC1AD7CD6200126EC2 /* BufferProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferProvider.swift; path = "Metal Common/BufferProvider.swift"; sourceTree = "<group>"; };
-		35023C4019DDB96F006F3266 /* HelloMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		35023C4019DDB96F006F3266 /* TDVectorGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDVectorGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35023C4419DDB96F006F3266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35023C4519DDB96F006F3266 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35023C4A19DDB970006F3266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,13 +65,13 @@
 		785825CD1DB60D6A00DED72F /* IncomingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingData.swift; path = "Metal Common/IncomingData.swift"; sourceTree = "<group>"; };
 		786EF0261DAC3A9E006183B2 /* inputVectors.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = inputVectors.vvt; path = "Incoming Data/inputVectors.vvt"; sourceTree = "<group>"; };
 		786EF0281DAC3DCF006183B2 /* Vectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vectors.swift; path = "Metal Common/Vectors.swift"; sourceTree = "<group>"; };
-		7895FE191DC022060094FC38 /* HelloMetalMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HelloMetalMac.entitlements; sourceTree = "<group>"; };
+		7895FE191DC022060094FC38 /* TDVectorGridMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TDVectorGridMac.entitlements; sourceTree = "<group>"; };
 		78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flowyz_nx_00600_0004000_vect.vvt; path = "Incoming Data/flowyz_nx_00600_0004000_vect.vvt"; sourceTree = "<group>"; };
 		78C457CB1DB56A940018F588 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Light.swift; path = "Metal Common/Light.swift"; sourceTree = "<group>"; };
 		78C457CD1DB56BE00018F588 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cube.png; path = "Metal Common/cube.png"; sourceTree = "<group>"; };
 		78C457D01DB57FF80018F588 /* MetalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
-		78D0669B1DC00C7400DBB71B /* HelloMetal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HelloMetal.entitlements; sourceTree = "<group>"; };
-		78DC0C7D1DB130920037067D /* HelloMetalMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMetalMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78D0669B1DC00C7400DBB71B /* TDVectorGrid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TDVectorGrid.entitlements; sourceTree = "<group>"; };
+		78DC0C7D1DB130920037067D /* TDVectorGridMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDVectorGridMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DC0C7F1DB130920037067D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78DC0C811DB130920037067D /* MacSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSceneViewController.swift; sourceTree = "<group>"; };
 		78DC0C831DB130920037067D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				78DEB3B31DBA7BA10038F995 /* Metal Common */,
-				35023C4219DDB96F006F3266 /* HelloMetal */,
-				78DC0C7E1DB130920037067D /* HelloMetalMac */,
+				35023C4219DDB96F006F3266 /* TDVectorGrid */,
+				78DC0C7E1DB130920037067D /* TDVectorGridMac */,
 				35023C4119DDB96F006F3266 /* Products */,
 				78B8066B1DB970850036485D /* Frameworks */,
 			);
@@ -113,16 +113,16 @@
 		35023C4119DDB96F006F3266 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35023C4019DDB96F006F3266 /* HelloMetal.app */,
-				78DC0C7D1DB130920037067D /* HelloMetalMac.app */,
+				35023C4019DDB96F006F3266 /* TDVectorGrid.app */,
+				78DC0C7D1DB130920037067D /* TDVectorGridMac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		35023C4219DDB96F006F3266 /* HelloMetal */ = {
+		35023C4219DDB96F006F3266 /* TDVectorGrid */ = {
 			isa = PBXGroup;
 			children = (
-				78D0669B1DC00C7400DBB71B /* HelloMetal.entitlements */,
+				78D0669B1DC00C7400DBB71B /* TDVectorGrid.entitlements */,
 				35023C4519DDB96F006F3266 /* AppDelegate.swift */,
 				0C49914B1A7278730028ECBB /* MySceneViewController.swift */,
 				35023C4919DDB970006F3266 /* Main.storyboard */,
@@ -131,7 +131,7 @@
 				35023C4E19DDB970006F3266 /* LaunchScreen.xib */,
 				35023C4319DDB96F006F3266 /* Supporting Files */,
 			);
-			path = HelloMetal;
+			path = TDVectorGrid;
 			sourceTree = "<group>";
 		};
 		35023C4319DDB96F006F3266 /* Supporting Files */ = {
@@ -151,10 +151,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		78DC0C7E1DB130920037067D /* HelloMetalMac */ = {
+		78DC0C7E1DB130920037067D /* TDVectorGridMac */ = {
 			isa = PBXGroup;
 			children = (
-				7895FE191DC022060094FC38 /* HelloMetalMac.entitlements */,
+				7895FE191DC022060094FC38 /* TDVectorGridMac.entitlements */,
 				78DC0C7F1DB130920037067D /* AppDelegate.swift */,
 				78DC0C811DB130920037067D /* MacSceneViewController.swift */,
 				78C457D01DB57FF80018F588 /* MetalViewController.swift */,
@@ -162,7 +162,7 @@
 				78DC0C851DB130930037067D /* Main.storyboard */,
 				78DC0C881DB130930037067D /* Info.plist */,
 			);
-			path = HelloMetalMac;
+			path = TDVectorGridMac;
 			sourceTree = "<group>";
 		};
 		78DEB3B31DBA7BA10038F995 /* Metal Common */ = {
@@ -195,9 +195,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		35023C3F19DDB96F006F3266 /* HelloMetal */ = {
+		35023C3F19DDB96F006F3266 /* TDVectorGrid */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 35023C5F19DDB970006F3266 /* Build configuration list for PBXNativeTarget "HelloMetal" */;
+			buildConfigurationList = 35023C5F19DDB970006F3266 /* Build configuration list for PBXNativeTarget "TDVectorGrid" */;
 			buildPhases = (
 				35023C3C19DDB96F006F3266 /* Sources */,
 				35023C3D19DDB96F006F3266 /* Frameworks */,
@@ -207,14 +207,14 @@
 			);
 			dependencies = (
 			);
-			name = HelloMetal;
+			name = TDVectorGrid;
 			productName = HelloMetal;
-			productReference = 35023C4019DDB96F006F3266 /* HelloMetal.app */;
+			productReference = 35023C4019DDB96F006F3266 /* TDVectorGrid.app */;
 			productType = "com.apple.product-type.application";
 		};
-		78DC0C7C1DB130920037067D /* HelloMetalMac */ = {
+		78DC0C7C1DB130920037067D /* TDVectorGridMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 78DC0C8B1DB130930037067D /* Build configuration list for PBXNativeTarget "HelloMetalMac" */;
+			buildConfigurationList = 78DC0C8B1DB130930037067D /* Build configuration list for PBXNativeTarget "TDVectorGridMac" */;
 			buildPhases = (
 				78DC0C791DB130920037067D /* Sources */,
 				78DC0C7A1DB130920037067D /* Frameworks */,
@@ -224,9 +224,9 @@
 			);
 			dependencies = (
 			);
-			name = HelloMetalMac;
+			name = TDVectorGridMac;
 			productName = HelloMetalMac;
-			productReference = 78DC0C7D1DB130920037067D /* HelloMetalMac.app */;
+			productReference = 78DC0C7D1DB130920037067D /* TDVectorGridMac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -263,7 +263,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 35023C3B19DDB96F006F3266 /* Build configuration list for PBXProject "HelloMetal" */;
+			buildConfigurationList = 35023C3B19DDB96F006F3266 /* Build configuration list for PBXProject "TDVectorGrid" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -276,8 +276,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				35023C3F19DDB96F006F3266 /* HelloMetal */,
-				78DC0C7C1DB130920037067D /* HelloMetalMac */,
+				35023C3F19DDB96F006F3266 /* TDVectorGrid */,
+				78DC0C7C1DB130920037067D /* TDVectorGridMac */,
 			);
 		};
 /* End PBXProject section */
@@ -485,9 +485,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = HelloMetal/HelloMetal.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TDVectorGrid/TDVectorGrid.entitlements;
 				DEVELOPMENT_TEAM = D77CH63CLG;
-				INFOPLIST_FILE = HelloMetal/Info.plist;
+				INFOPLIST_FILE = TDVectorGrid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.turbulentdynamics.vectorgrid;
@@ -504,9 +504,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = HelloMetal/HelloMetal.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TDVectorGrid/TDVectorGrid.entitlements;
 				DEVELOPMENT_TEAM = D77CH63CLG;
-				INFOPLIST_FILE = HelloMetal/Info.plist;
+				INFOPLIST_FILE = TDVectorGrid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.turbulentdynamics.vectorgrid;
@@ -526,16 +526,18 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_ENTITLEMENTS = HelloMetalMac/HelloMetalMac.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TDVectorGridMac/TDVectorGridMac.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = D77CH63CLG;
-				INFOPLIST_FILE = HelloMetalMac/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TDVectorGrid/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.turbulentdynamics.vectorgrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -551,17 +553,19 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_ENTITLEMENTS = HelloMetalMac/HelloMetalMac.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TDVectorGridMac/TDVectorGridMac.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D77CH63CLG;
-				INFOPLIST_FILE = HelloMetalMac/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TDVectorGrid/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.turbulentdynamics.vectorgrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -572,7 +576,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		35023C3B19DDB96F006F3266 /* Build configuration list for PBXProject "HelloMetal" */ = {
+		35023C3B19DDB96F006F3266 /* Build configuration list for PBXProject "TDVectorGrid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35023C5D19DDB970006F3266 /* Debug */,
@@ -581,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35023C5F19DDB970006F3266 /* Build configuration list for PBXNativeTarget "HelloMetal" */ = {
+		35023C5F19DDB970006F3266 /* Build configuration list for PBXNativeTarget "TDVectorGrid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35023C6019DDB970006F3266 /* Debug */,
@@ -590,7 +594,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78DC0C8B1DB130930037067D /* Build configuration list for PBXNativeTarget "HelloMetalMac" */ = {
+		78DC0C8B1DB130930037067D /* Build configuration list for PBXNativeTarget "TDVectorGridMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				78DC0C891DB130930037067D /* Debug */,

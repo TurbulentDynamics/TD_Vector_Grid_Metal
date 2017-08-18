@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:HelloMetal.xcodeproj">
+      location = "self:/Users/niallobyrnes/Workspace/xcode/vector-viz-ios-macos/TDVectorGrid.xcodeproj">
    </FileRef>
 </Workspace>

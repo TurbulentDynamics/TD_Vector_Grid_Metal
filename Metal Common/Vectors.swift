@@ -21,7 +21,7 @@ class Vectors: Node {
 
         let path = Bundle.main.path(forResource: "cube", ofType: "png")!
         let data = NSData(contentsOfFile: path)! as Data
-        let texture = try! textureLoader.newTexture(data: data, options: [MTKTextureLoader.Option.SRGB : (false as NSNumber)])
+        let texture = try! textureLoader.newTexture(with: data, options: [MTKTextureLoader.Option.SRGB : (false as NSNumber)])
         
         super.init(name: "Vectors", vertices: verticesArray, device: device, texture: texture)
     }
