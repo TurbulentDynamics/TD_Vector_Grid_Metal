@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  HelloMetalMac
 //
-//  Created by Igor Poltavtsev on 14.10.16.
-//  Copyright © 2016 Razeware LLC. All rights reserved.
-//
 
 import Cocoa
 
