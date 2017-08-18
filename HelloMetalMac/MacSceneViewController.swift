@@ -59,7 +59,6 @@ class MacSceneViewController: MetalViewController, MetalViewControllerDelegate {
         if let url = Bundle.main.url(forResource: "inputVectors", withExtension: "vvt") {
             let string = try? String.init(contentsOf: url)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "OpenFile"), object: string)
-            
         }
     }
     

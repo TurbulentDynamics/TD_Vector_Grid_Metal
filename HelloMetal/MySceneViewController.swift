@@ -44,7 +44,11 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
         self.minusButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.openVVTFile(self)
+            //self.openVVTFile(self)
+            
+            if let url = Bundle.main.url(forResource: "inputVectors", withExtension: "vvt"), let string = try? String.init(contentsOf: url) {
+                self.readDataFromString(string)
+            }
         }
     }
     
@@ -66,29 +70,32 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
             let coordinator = NSFileCoordinator()
             coordinator.coordinate(readingItemAt: url, options: [], error: nil) { (newURL) in
                 if let contents = try? String(contentsOf: newURL) {
-                    
-                    self.newFile = true
-                    
-                    DispatchQueue.main.async {
-                        self.readingLabel.text = "Reading from file..."
-                        self.activityIndicator.startAnimating()
-                        self.activityIndicator.isHidden = false
-                        self.readingLabel.isHidden = false
-                        self.plusButton.isEnabled = false
-                        self.minusButton.isEnabled = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            IncomingData.shared.readDataFromFile(contents: contents)
-
-                            self.previousMultiplier = 0
-                            self.multiplier = 0.05
-                            self.readingLabel.text = "Applying multiplier..."
-                            self.setNewMultiplier()
-                        }
-                    }
+                    self.readDataFromString(contents)
                 }
             }
             
             url.stopAccessingSecurityScopedResource()
+        }
+    }
+    
+    func readDataFromString(_ contents: String) {
+        self.newFile = true
+        
+        DispatchQueue.main.async {
+            self.readingLabel.text = "Reading from file..."
+            self.activityIndicator.startAnimating()
+            self.activityIndicator.isHidden = false
+            self.readingLabel.isHidden = false
+            self.plusButton.isEnabled = false
+            self.minusButton.isEnabled = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                IncomingData.shared.readDataFromFile(contents: contents)
+                
+                self.previousMultiplier = 0
+                self.multiplier = 0.05
+                self.readingLabel.text = "Applying multiplier..."
+                self.setNewMultiplier()
+            }
         }
     }
     
