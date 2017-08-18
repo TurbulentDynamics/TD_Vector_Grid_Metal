@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0C49914C1A7278730028ECBB /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49914A1A7278730028ECBB /* MetalViewController.swift */; };
 		0C49914D1A7278730028ECBB /* MySceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49914B1A7278730028ECBB /* MySceneViewController.swift */; };
+		0C729A631F47686E00AE4434 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C729A621F47686E00AE4434 /* Metal.framework */; };
+		0C729A651F47687200AE4434 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C729A641F47687200AE4434 /* MetalKit.framework */; };
 		0C9DA0AD1AD7CD6200126EC2 /* BufferProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9DA0AC1AD7CD6200126EC2 /* BufferProvider.swift */; };
 		35023C4619DDB96F006F3266 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35023C4519DDB96F006F3266 /* AppDelegate.swift */; };
 		35023C4B19DDB970006F3266 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35023C4919DDB970006F3266 /* Main.storyboard */; };
@@ -27,8 +29,6 @@
 		7889D7831DB947C60063CB9E /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35023C6519DDBB29006F3266 /* Shaders.metal */; };
 		789B63A51DB83FF5003C1DD7 /* IncomingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785825CD1DB60D6A00DED72F /* IncomingData.swift */; };
 		78A6FD2E1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt in Resources */ = {isa = PBXBuildFile; fileRef = 78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */; };
-		78B8066D1DB970860036485D /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8066C1DB970860036485D /* Metal.framework */; };
-		78B8066F1DB9708D0036485D /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8066E1DB9708D0036485D /* MetalKit.framework */; };
 		78B806701DB972450036485D /* Shaders.metal in Resources */ = {isa = PBXBuildFile; fileRef = 35023C6519DDBB29006F3266 /* Shaders.metal */; };
 		78C457CC1DB56A940018F588 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C457CB1DB56A940018F588 /* Light.swift */; };
 		78C457CE1DB56BE00018F588 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C457CD1DB56BE00018F588 /* cube.png */; };
@@ -48,6 +48,8 @@
 /* Begin PBXFileReference section */
 		0C49914A1A7278730028ECBB /* MetalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
 		0C49914B1A7278730028ECBB /* MySceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySceneViewController.swift; sourceTree = "<group>"; };
+		0C729A621F47686E00AE4434 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
+		0C729A641F47687200AE4434 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		0C9DA0AC1AD7CD6200126EC2 /* BufferProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferProvider.swift; path = "Metal Common/BufferProvider.swift"; sourceTree = "<group>"; };
 		35023C4019DDB96F006F3266 /* HelloMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35023C4419DDB96F006F3266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,8 +67,6 @@
 		786EF0281DAC3DCF006183B2 /* Vectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vectors.swift; path = "Metal Common/Vectors.swift"; sourceTree = "<group>"; };
 		7895FE191DC022060094FC38 /* HelloMetalMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HelloMetalMac.entitlements; sourceTree = "<group>"; };
 		78A6FD2D1DB58E0200FA3AC2 /* flowyz_nx_00600_0004000_vect.vvt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flowyz_nx_00600_0004000_vect.vvt; path = "Incoming Data/flowyz_nx_00600_0004000_vect.vvt"; sourceTree = "<group>"; };
-		78B8066C1DB970860036485D /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
-		78B8066E1DB9708D0036485D /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		78C457CB1DB56A940018F588 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Light.swift; path = "Metal Common/Light.swift"; sourceTree = "<group>"; };
 		78C457CD1DB56BE00018F588 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cube.png; path = "Metal Common/cube.png"; sourceTree = "<group>"; };
 		78C457D01DB57FF80018F588 /* MetalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
@@ -91,8 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78B8066F1DB9708D0036485D /* MetalKit.framework in Frameworks */,
-				78B8066D1DB970860036485D /* Metal.framework in Frameworks */,
+				0C729A651F47687200AE4434 /* MetalKit.framework in Frameworks */,
+				0C729A631F47686E00AE4434 /* Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,8 +145,8 @@
 		78B8066B1DB970850036485D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78B8066E1DB9708D0036485D /* MetalKit.framework */,
-				78B8066C1DB970860036485D /* Metal.framework */,
+				0C729A641F47687200AE4434 /* MetalKit.framework */,
+				0C729A621F47686E00AE4434 /* Metal.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,11 +237,10 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "Razeware LLC";
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Turbulent Dynamics";
 				TargetAttributes = {
 					35023C3F19DDB96F006F3266 = {
-						DevelopmentTeam = 42XF78PWA9;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -251,7 +250,6 @@
 					};
 					78DC0C7C1DB130920037067D = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 42XF78PWA9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -265,7 +263,7 @@
 				};
 			};
 			buildConfigurationList = 35023C3B19DDB96F006F3266 /* Build configuration list for PBXProject "HelloMetal" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -387,14 +385,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -417,8 +421,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -435,14 +439,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -458,8 +468,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -473,10 +483,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HelloMetal/HelloMetal.entitlements;
-				DEVELOPMENT_TEAM = 42XF78PWA9;
+				DEVELOPMENT_TEAM = D77CH63CLG;
 				INFOPLIST_FILE = HelloMetal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = altima.HelloMetal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.turbulentdynamics.vectorgrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -490,10 +501,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HelloMetal/HelloMetal.entitlements;
-				DEVELOPMENT_TEAM = 42XF78PWA9;
+				DEVELOPMENT_TEAM = D77CH63CLG;
 				INFOPLIST_FILE = HelloMetal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = altima.HelloMetal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.turbulentdynamics.vectorgrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -513,10 +525,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 42XF78PWA9;
+				DEVELOPMENT_TEAM = D77CH63CLG;
 				INFOPLIST_FILE = HelloMetalMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = altima.HelloMetalMac;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.turbulentdynamics.vectorgrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -537,10 +550,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 42XF78PWA9;
+				DEVELOPMENT_TEAM = D77CH63CLG;
 				INFOPLIST_FILE = HelloMetalMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = altima.HelloMetalMac;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.turbulentdynamics.vectorgrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
