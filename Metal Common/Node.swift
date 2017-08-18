@@ -35,7 +35,7 @@ class Node {
     }
   
     let dataSize = vertexData.count * MemoryLayout<Float>.size
-    vertexBuffer = device.makeBuffer(bytes: vertexData, length: dataSize, options: MTLResourceOptions())
+    vertexBuffer = device.makeBuffer(bytes: vertexData, length: dataSize, options: MTLResourceOptions())!
     
     self.name = name
     self.device = device
@@ -56,18 +56,18 @@ class Node {
     renderPassDescriptor.colorAttachments[0].storeAction = .store
     
     let commandBuffer = commandQueue.makeCommandBuffer()
-    commandBuffer.addCompletedHandler { (commandBuffer) -> Void in
+    commandBuffer?.addCompletedHandler { (commandBuffer) -> Void in
       self.bufferProvider.avaliableResourcesSemaphore.signal()
     }
     
-    let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
-    renderEncoder.setCullMode(MTLCullMode.front)
+    let renderEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
+    renderEncoder?.setCullMode(MTLCullMode.front)
     
-    renderEncoder.setRenderPipelineState(pipelineState)
-    renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
+    renderEncoder?.setRenderPipelineState(pipelineState)
+    renderEncoder?.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
     //renderEncoder.setFragmentTexture(texture, at: 0)
     if let samplerState = samplerState {
-      renderEncoder.setFragmentSamplerState(samplerState, at: 0)
+      renderEncoder?.setFragmentSamplerState(samplerState, index: 0)
     }
     
     var nodeModelMatrix = self.modelMatrix()
@@ -75,13 +75,13 @@ class Node {
     
     let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix, modelViewMatrix: nodeModelMatrix, light: light)
     
-    renderEncoder.setVertexBuffer(uniformBuffer, offset: 0, at: 1)
-    renderEncoder.setFragmentBuffer(uniformBuffer, offset: 0, at: 1)
-    renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: vertexCount)
-    renderEncoder.endEncoding()
+    renderEncoder?.setVertexBuffer(uniformBuffer, offset: 0, index: 1)
+    renderEncoder?.setFragmentBuffer(uniformBuffer, offset: 0, index: 1)
+    renderEncoder?.drawPrimitives(type: .line, vertexStart: 0, vertexCount: vertexCount)
+    renderEncoder?.endEncoding()
     
-    commandBuffer.present(drawable)
-    commandBuffer.commit()
+    commandBuffer?.present(drawable)
+    commandBuffer?.commit()
   }
   
   func modelMatrix() -> float4x4 {
@@ -114,6 +114,6 @@ class Node {
     else {
       print(">> ERROR: Failed creating a sampler descriptor!")
     }
-    return device.makeSamplerState(descriptor: pSamplerDescriptor!)
+    return device.makeSamplerState(descriptor: pSamplerDescriptor!)!
   }
 }

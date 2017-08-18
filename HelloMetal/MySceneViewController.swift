@@ -121,7 +121,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
     }
     
     // 2
-    func pan(_ panGesture: UIPanGestureRecognizer) {
+    @objc func pan(_ panGesture: UIPanGestureRecognizer) {
         stopTimer()
         
         if panGesture.state == .changed {
@@ -166,7 +166,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
         }
     }
     
-    func pinch(pinchGesture: UIPinchGestureRecognizer){
+    @objc func pinch(pinchGesture: UIPinchGestureRecognizer){
         if pinchGesture.state == UIGestureRecognizerState.changed{
             vectorsObject.scale -= Float(lastScale - pinchGesture.scale) * vectorsObject.scale
             lastScale = pinchGesture.scale
@@ -189,7 +189,7 @@ class MySceneViewController: MetalViewController, MetalViewControllerDelegate, U
         }
     }
     
-    func fireTimer(timer:Timer!) {
+    @objc func fireTimer(timer:Timer!) {
         let info = timer.userInfo as! [String : NSNumber]
         let sender = info["sender"]
         changeMultiplier(sender: sender!)

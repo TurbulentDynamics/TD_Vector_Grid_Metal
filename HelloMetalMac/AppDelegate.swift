@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openPanel.title = "Choose a vvt file"
         
         openPanel.begin() { result in
-            if result == NSFileHandlingPanelOKButton {
+            if result.rawValue == NSFileHandlingPanelOKButton {
                 let string = try? String.init(contentsOf: openPanel.urls.first!)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "OpenFile"), object: string)
             }
